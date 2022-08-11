@@ -1,0 +1,1 @@
+document.querySelector('body').style.background = window.location.search ? 'crimson' : 'black';

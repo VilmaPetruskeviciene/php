@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.two-links {
+    background-color: coral;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.two-links a {
+    color: #6495ed;
+    text-decoration: none;
+    transition: all 0.5s;
+    padding: 20px;
+}
+
+.two-links a:hover {
+    color: #6495ed88;
+}
