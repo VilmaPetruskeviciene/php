@@ -12,12 +12,12 @@ if(!empty($_POST)){
 
         file_put_contents(__DIR__ .'/data.json', json_encode($data));
 
-        header("Location: ./add.php?iban=".$_POST['iban']."");
+        header("Location: ./addMessage.php?iban=".$_POST['iban']."");
         die();
     }
 
     $input = '<form action="./add.php" method="post">
-            <input class="input" type="number" name="sum">
+            <input class="input" type="text" name="sum">
             <input type="hidden" name="vardas" value="'.$_POST['vardas'].'">
             <input type="hidden" name="pavarde" value="'.$_POST['pavarde'].'">
             <input type="hidden" name="iban" value="'.$_POST['iban'].'">
@@ -50,7 +50,7 @@ if(!empty($_GET)){
     }
 
     $input = '<form action="./add.php" method="post">
-            <input class="input" type="number" name="sum" min="0">
+            <input class="input" type="text" name="sum" min="0">
             <input type="hidden" name="vardas" value="'.$accounts['vardas'].'">
             <input type="hidden" name="pavarde" value="'.$accounts['pavarde'].'">
             <input type="hidden" name="iban" value="'.$accounts['iban'].'">

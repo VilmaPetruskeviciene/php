@@ -33,9 +33,8 @@ if(isset($_POST['submit'])) {
         }
     }
 
-    if($idUnique) {
-        $vardas = $_POST['vardas'];
-        $pavarde = $_POST['pavarde'];
+    if($idUnique && !array_filter($message)) {
+        
         $iban = $_POST['iban'];
         $ak = $_POST['ak'];
     
@@ -50,10 +49,11 @@ if(isset($_POST['submit'])) {
         $data[] = $newUser;
     
         file_put_contents(__DIR__ .'/data.json', json_encode($data));
-        //echo 'Nauja saskaita sukurta sekmingai';
-        header("Location: ./sarasas.php");
+        header("Location: ./okMessage.php");
         die();
-    } 
+    } else {
+        $message['ak'] = 'Toks asmens kodas jau yra!';  
+    }
 }
 
 function newIban() {

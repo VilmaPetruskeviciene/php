@@ -61,6 +61,14 @@ body {
     font-size: 70px;
 }
 
+.del {
+    text-align: center;
+    color: #FF4F51;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 70px;
+}
+
 .img {
     max-width: 400px;
     height: auto;

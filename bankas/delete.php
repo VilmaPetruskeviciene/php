@@ -10,12 +10,17 @@ if(array_key_exists('delete', $_POST)) {
 
             if($value['likutis'] == 0) {
                 array_splice($data, $key, 1);
+
+                file_put_contents(__DIR__ .'/data.json', json_encode($data));
+
+                header("Location: ./deleteMessage.php");
+                die();
+            } else {
+                header("Location: ./delErrorMessage.php");
+                die();
             }
         }
     }
 
-    file_put_contents(__DIR__ .'/data.json', json_encode($data));
-
-    header("Location: ./sarasas.php");
-    die();
+    
 }
