@@ -1,5 +1,6 @@
 <?php
 view('top');
+
 ?>
 
 <?php if(isLogged()) : ?>
@@ -9,10 +10,12 @@ view('top');
 
 <?php else : ?>
 
-    <a href="<?= URL ?>login">Login HERE</a>
+    <a href="<?= DIR ?>login">Login HERE</a>
 
 <?php endif ?>
 
+
+<h1>Sveiki atvykę į mūsų puslapį</h1>
 
 <?php
 view('bottom');
