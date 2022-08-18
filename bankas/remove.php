@@ -10,7 +10,6 @@ if(!empty($_POST)){
                 if($val['likutis'] >= $_POST['sum']) {
                     $val['likutis'] -= $_POST['sum'];
                 } else {
-                    //$error = 'Saskaitoje nepakanka lesu.';
                     header("Location: ./remove.php?iban=".$_POST['iban']."");
                     die();
                 }
@@ -91,7 +90,6 @@ if(!empty($_GET)) {
             <a class="btn btn-nav" href="./newAccount.php">Atidaryti naują sąskaitą</a>
         </nav>
         <div class="user-new">
-            <!--<div class="red"><?php echo $error; ?></div>-->
             <h1 class="text">Nuskaičiuoti lėšas:</h1>
             <?=$renderRow ?? '' ?>
 
