@@ -15,18 +15,12 @@ if(isset($_POST['submit'])) {
         $message['vardas'] = 'Vardas yra per trumpas!'; 
     } else {
         $vardas = $_POST['vardas'];
-        if($vardas == strtolower($vardas)) {
-            $message['vardas'] = 'Vardas iš mažosios raidės!';
-            }
     }
 
     if(strlen($_POST['pavarde']) < 3) {
-        $message['pavarde'] = 'Pavardė yra per trumpa!'; 
+        $message['pavarde'] = 'Pavarde yra per trumpa!'; 
     } else {
         $pavarde = $_POST['pavarde'];
-        if($pavarde == strtolower($pavarde)) {
-            $message['pavarde'] = 'Pavardė iš mažosios raidės!';
-        }
     }
 
     $data = json_decode(file_get_contents(__DIR__ .'/data.json'), 1);
@@ -54,7 +48,7 @@ if(isset($_POST['submit'])) {
     
         $data[] = $newUser;
     
-        file_put_contents(__DIR__ .'/data.json', json_encode($data), 1);
+        file_put_contents(__DIR__ .'/data.json', json_encode($data));
         header("Location: ./okMessage.php");
         die();
     } else {
@@ -99,7 +93,7 @@ function newIban() {
                 <label class="label">Sąskaitos numeris:</label>
                 <input class="input" type="text" name="iban" value="<?=newIban()?>" readonly required>
                 <label class="label">Asmens kodas:</label>
-                <input class="input" type="text" name="ak" value="<?php echo $ak; ?>" required>
+                <input class="input" type="number" name="ak" value="<?php echo $ak; ?>" required>
                 <div class="red"><?php echo $message['ak']; ?></div>
                 <input class="btn-2 btn-ok" type="submit" name="submit" value="Sukurti sąskaitą">
             </form>
