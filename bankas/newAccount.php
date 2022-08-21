@@ -61,7 +61,7 @@ if(isset($_POST['submit'])) {
         header("Location: ./okMessage.php");
         die();
     } else {
-        $message['ak'] = 'Toks asmens kodas jau yra!';  
+        $message['ak'] = 'Neteisingas asmens kodo formatas arba toks asmens kodas jau yra!';  
     }
 }
 function newIban() {
