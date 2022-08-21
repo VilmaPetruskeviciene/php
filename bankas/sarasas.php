@@ -2,30 +2,16 @@
 $data = json_decode(file_get_contents(__DIR__ .'/data.json'), 1);
 
 function mySort($arr) {
-    $sarasas;
-    do {
-        $sarasas = false;
-        for($i = 0; $i < count($arr)-1; $i++) {
-            $pirmas = ord($arr[$i]['pavarde'][0]);
-            $antras = ord($arr[$i+1]['pavarde'][0]);
-
-            if($pirmas > $antras) {
-                $a = $arr[$i];
-                $arr[$i] = $arr[$i + 1];
-                $arr[$i + 1] = $a;
-                $sarasas = true;
-            }
-        }
-    } while($sarasas);
+    usort($arr, function($a, $b){return ($a['pavarde'] < $b['pavarde']) ? -1 : 1;});
     return $arr;
 }
 
 $message = '';
-if(empty($data)) {
-    $message = 'Neatidaryta nė viena sąskaita.';
-} else { 
+if(!empty($data)) {
     $data = mySort($data);
     file_put_contents(__DIR__ . '/data.json', json_encode($data), 1);
+} else { 
+    $message = 'Neatidaryta nė viena sąskaita.';
 }
 
 ?>
@@ -44,7 +30,7 @@ if(empty($data)) {
             <a class="btn btn-nav" href="./index.php">Pradžia</a>
             <a class="btn btn-nav" href="./newAccount.php">Atidaryti naują sąskaitą</a>
         </nav>
-        <p><?=$message?></p>
+        <p class="hh"><?=$message?></p>
         <div class='user'>
         <?php foreach($data as $index => $val): ?>
             <div class="user1">
@@ -56,7 +42,7 @@ if(empty($data)) {
                 <div class ='action'>
                     <a class="btn-2 btn-ok" href="./add.php?index=<?= $index ?>">Pridėti lėšų</a>
                     <a class="btn-2 btn-ok" href="./remove.php?index=<?= $index ?>">Nuskaičiuoti lėšas</a>
-                    <a class="btn-2 btn-delete" href="./bankas/delete.php?index=<?= $index ?>">Ištrinti sąskaitą</a>
+                    <a class="btn-2 btn-delete" href="./delete.php?index=<?= $index ?>">Ištrinti sąskaitą</a>
                 </div> 
             </form>
             </div>

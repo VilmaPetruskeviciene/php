@@ -1,4 +1,7 @@
 <?php
+if (!file_exists(__DIR__ . '/data.json')) {
+    file_put_contents(__DIR__ . '/data.json', json_encode([]));
+}
 
 $vardas = $pavarde = $ak = '';
 $message = ['ak' => '', 'vardas' => '', 'pavarde' => ''];
@@ -61,7 +64,6 @@ if(isset($_POST['submit'])) {
         $message['ak'] = 'Toks asmens kodas jau yra!';  
     }
 }
-
 function newIban() {
     $ibanNumber = 'LT';
     for($i = 0; $i < 18; $i++){
@@ -70,6 +72,7 @@ function newIban() {
     }
     return $ibanNumber;
 }
+
 ?>
 
 <!DOCTYPE html>
