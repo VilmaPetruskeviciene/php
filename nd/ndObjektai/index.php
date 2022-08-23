@@ -7,6 +7,8 @@ require __DIR__.'/Kibiras2.php';
 require __DIR__.'/Kibiras3.php';
 require __DIR__.'/KibirasNePo1.php';
 require __DIR__.'/Stikline.php';
+require __DIR__.'/Grybas.php';
+require __DIR__.'/Krepsys.php';
 
 
 echo "-----------1-------------";
@@ -92,3 +94,8 @@ var_dump($st1);
 var_dump($st2);
 var_dump($st3);
 
+echo "---------7---------------";
+echo "\n";
+$krep = new Krepsys;
+while($krep->deti(new Grybas)) {}
+var_dump($krep);
