@@ -1,0 +1,18 @@
+{
+    "name": "user/php",
+    "description": "Bla bla bla",
+    "autoload": {
+        "psr-4": {
+            "Petro\\": "01/",
+            "Antano\\Belekas\\": "02/",
+            "": "01/"
+        }
+    },
+    "authors": [
+        {
+            "name": "VilmaPetruskeviciene",
+            "email": "105633730+VilmaPetruskeviciene@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
