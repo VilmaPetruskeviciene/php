@@ -1,0 +1,25 @@
+﻿Bankas ver. 1
+(Paprasčiausia banko aplikacijos versija)
+
+
+Banką sudaro atskiri puslapiai:
+1. Sąskaitų sąrašas su mygtuku “ištrinti” ir linku į “pridėti lėšų” ir “nuskaičiuoti lėšas” puslapius
+2. Naujos sąskaitos sukūrimas (įvedami duomenys: vardas, pavardė, sąskaitos numeris, asmens kodas)
+3. Puslapis “pridėti lėšas”. Turi matytis savininko vardas, pavardė sąskaitos likutis ir laukelis sumai įvesti
+4. Puslapis “nuskaičiuoti lėšas”. Analogiškai prieš tai buvusiam punktui
+5. Visi puslapis turi bendrą meniu su nuorodom
+
+
+1. Nauja sąskaita sukuriama su pradine 0 suma, o lėšos pridedamos/nuimamos pagalbiniuose puslapiuose.
+2. Sąskaitos, kurioje yra lėšų ištrinti neturi būti galima.
+3. Sąskaitas saraše rūšiuoti pagal savininko pavardę.
+4. Sąskaitoje likusi suma negali būti minusinė.
+5. Asmens kodas turi būti unikalus. Negali būti dviejų vartotojų su tuo pačiu asmens kodu.
+6. Duomenų bazė - JSON failas.
+7. Informacijos keitimui naudoti POST metodą ir peradresavimą, kitais atvejais GET metodą.
+8. Po kiekvienos įrašymo (trynimo) operacijos turi būti parodomas pranešimas apie operacijos rezultatus.
+9. Sąskaitos numeris b puslapyje (naujos sąskaitos kūrimas) turi būti sugeneruojamas automatiškai ir html atvaizduojamas kaip readonly. Sąskaita turi atitikti IBAN formatą. Bankas lietuviškas.
+10. Asmens kodas turi būti tikrinamas ar atitinka taisykles.
+11. Vardas ir pavardė ilgesni nei 3 simboliai.
+12. Tikrinimas tik BackEnd’e. FrontEnd’e tikrinimo nedarykite.
+13. Papildomai galite padaryti prisijungimą prie banko jo darbuotojams, kad tik prisijungę vartotojai (banko darbuotojai) galėtų dirbti su aplikacija. Prisijungimo duomenis saugokite atskirame JSON faile. Slaptažodžius saugokite užkoduotus (hash).
