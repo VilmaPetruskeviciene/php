@@ -5,14 +5,17 @@ if(isset($_GET)) {
 $message = '';
     $data = json_decode(file_get_contents(__DIR__ . '/data.json'), 1);
     foreach($data as $i => $val) {
-        if($i == $index && $val['likutis'] == 0) {
-                unset($data[$i]);          
+        if($i == $index) {
+            if ($val['likutis'] == 0) {
+                unset($data[$i]);
+                //$data = array_values($data);          
                 $message = 'Sąskaita ištrinta.';
                 file_put_contents(__DIR__ . '/data.json', json_encode($data));
             } else {
                 $message = 'Sąskaitoje yra pinigų.';
             }
         }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
