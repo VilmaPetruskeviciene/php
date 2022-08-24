@@ -9,6 +9,8 @@ require __DIR__.'/KibirasNePo1.php';
 require __DIR__.'/Stikline.php';
 require __DIR__.'/Grybas.php';
 require __DIR__.'/Krepsys.php';
+require __DIR__.'/MarsoPalydovas.php';
+require __DIR__.'/Tenisininkas.php';
 
 
 echo "-----------1-------------";
@@ -99,3 +101,23 @@ echo "\n";
 $krep = new Krepsys;
 while($krep->deti(new Grybas)) {}
 var_dump($krep);
+
+echo "---------8---------------";
+echo "\n";
+echo 'Monetos: ' . $pin1->monetos() . ' Banknotai: ' . $pin1->Banknotai();
+echo "\n";
+echo 'Monetos: ' . $pin2->monetos() . ' Banknotai: ' . $pin2->Banknotai();
+
+echo "\n";
+echo "---------9---------------";
+echo "\n";
+$marsas1 = MarsoPalydovas::naujasPalydovas();
+var_dump($marsas1);
+$marsas2 = MarsoPalydovas::naujasPalydovas();
+var_dump($marsas2);
+$marsas3 = MarsoPalydovas::naujasPalydovas();
+var_dump($marsas3);
+
+echo "\n";
+echo "---------10---------------";
+echo "\n";

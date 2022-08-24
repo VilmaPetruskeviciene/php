@@ -15,8 +15,15 @@ class Pinigine {
         }
     }
 
+    public function monetos() {
+        return $this->metaliniaiPinigai;
+    }
+
+    public function banknotai() {
+        return $this->popieriniaiPinigai;
+    }
+
     static public function skaiciuoti() : int {
         return self::$piniguKiekis;
     }
-    
 }
