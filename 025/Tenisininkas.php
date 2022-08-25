@@ -46,11 +46,13 @@ class Tenisininkas {
 
                 self::$zaidejas1->kamuoliukas = false;
                 self::$zaidejas2->kamuoliukas = true;
+                echo '<h1>' . self::$zaidejas1->vardas .' perdave ' . self::$zaidejas2->vardas . '</h1>';
 
             } else if (self::$zaidejas2->vardas == $this->vardas) {
 
                 self::$zaidejas2->kamuoliukas = false;
                 self::$zaidejas1->kamuoliukas = true;
+                echo '<h1>' . self::$zaidejas2->vardas .' perdave ' . self::$zaidejas1->vardas . '</h1>';
                 
             } else {
                 echo '<h1>Ziūrovas</h1>';
