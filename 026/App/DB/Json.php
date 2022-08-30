@@ -2,23 +2,26 @@
 
 namespace App\DB;
 
-class Json implements DataBase {
+class Json implements DataBase{
 
     private $data;
     static private $obj;
 
-    static function connect() {
+    static public function connect()
+    {
         return self::$obj ?? self::$obj = new self;
     }
 
-    private function __construct() {
+    private function __construct()
+    {
         if (!file_exists(DIR . 'App/DB/data.json')) {
             file_put_contents(DIR . 'App/DB/data.json', json_encode([]));
         }
         $this->data = json_decode(file_get_contents(DIR . 'App/DB/data.json'), 1);
     }
 
-    private function getId() : int {
+    private function getId() : int
+    {
         if (!file_exists(DIR . 'App/DB/data_id.json')) {
             file_put_contents(DIR . 'App/DB/data_id.json', json_encode(0));
         }
@@ -28,16 +31,19 @@ class Json implements DataBase {
         return $id;
     }
 
-    public function destruct() {
+    public function __destruct()
+    {
         file_put_contents(DIR . 'App/DB/data.json', json_encode($this->data));
     }
 
-    public function create(array $animalData) : void {
+    public function create(array $animalData) : void
+    {
         $animalData['id'] = $this->getId();
         $this->data[] = $animalData;
     }
 
-    public function update(int $animalId, array $animalData) : void {
+    public function update(int $animalId, array $animalData) : void
+    {
         foreach ($this->data as &$animal) {
             if ($animal['id'] == $animalId) {
                 $animalData['id'] = $animalId;
@@ -47,7 +53,8 @@ class Json implements DataBase {
         }
     }
 
-    public function delete(int $animalId) : void {
+    public function delete(int $animalId) : void
+    {
         foreach ($this->data as $index => $animal) {
             if ($animal['id'] == $animalId) {
                 unset($this->data[$index]);
@@ -57,7 +64,8 @@ class Json implements DataBase {
         }
     }
 
-    public function show(int $animalId) : array {
+    public function show(int $animalId) : array
+    {
         foreach ($this->data as $animal) {
             if ($animal['id'] == $animalId) {
                 return $animal;
@@ -65,7 +73,9 @@ class Json implements DataBase {
         }
     }
 
-    public function showAll() : array {
+    public function showAll() : array 
+    {
         return $this->data;
     }
+
 }
