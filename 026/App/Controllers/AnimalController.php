@@ -24,5 +24,15 @@ class AnimalController {
         ]);
         return App::redirect('');
     }
+
+
+    public function list()
+    {
+
+        return App::view('animal_list', [
+            'title' => 'Animals List',
+            'animals' => Json::connect()->showAll()
+        ]);
+    }
     
 }
