@@ -10909,3 +10909,34 @@ h1, .h1 {
 h1 span, .h1 span {
   color: crimson;
 }
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.line__content {
+  margin: 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.line__content__type {
+  font-size: 28px;
+  color: skyblue;
+  margin-right: 10px;
+  line-height: 28px;
+  font-weight: bold;
+}
+.line__content__weight {
+  font-size: 28px;
+  color: gray;
+  margin-right: 10px;
+  line-height: 28px;
+}
+.line__content__tail {
+  width: 28px;
+  height: 28px;
+  background-color: crimson;
+}

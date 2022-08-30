@@ -6,3 +6,34 @@ h1 {
         color: crimson;
     }
 }
+
+.line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    &__content {
+        margin: 8px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        &__type {
+            font-size: 28px;
+            color: skyblue;
+            margin-right: 10px;
+            line-height: 28px;
+            font-weight: bold;
+        }
+        &__weight {
+            font-size: 28px;
+            color: gray;
+            margin-right: 10px;
+            line-height: 28px;
+        }
+        &__tail {
+            width: 28px;
+            height: 28px;
+            background-color: crimson;
+        }
+    }
+}
