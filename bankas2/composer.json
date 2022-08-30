@@ -1,0 +1,15 @@
+{
+    "name": "user/bankas2",
+    "autoload": {
+        "psr-4": {
+            "": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "VilmaPetruskeviciene",
+            "email": "105633730+VilmaPetruskeviciene@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
