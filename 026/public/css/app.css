@@ -10940,3 +10940,8 @@ h1 span, .h1 span {
   height: 28px;
   background-color: crimson;
 }
+.line__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

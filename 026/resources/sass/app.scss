@@ -36,4 +36,9 @@ h1 {
             background-color: crimson;
         }
     }
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
 }

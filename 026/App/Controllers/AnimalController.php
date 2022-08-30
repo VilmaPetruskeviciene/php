@@ -22,7 +22,7 @@ class AnimalController {
             'weight' => $_POST['weight'],
             'tail' => isset($_POST['tail']) ? 1 : 0 
         ]);
-        return App::redirect('');
+        return App::redirect('animals');
     }
 
 
