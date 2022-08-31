@@ -9,3 +9,6 @@
     <title><?= $title ?? 'No title' ?></title>
 </head>
 <body>
+
+<?php
+App\App::view('nav');

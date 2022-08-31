@@ -26,8 +26,10 @@ App\App::view('top', ['title' => $title]);
                                     <?php endif ?>
                                 </div>
                                 <div class="line__buttons">
-                                <button type="button" class="btn btn-outline-success m-2">Edit</button>
-                                <button type="button" class="btn btn-outline-danger m-2">Delete</button>    
+                                <a href="<?= URL.'animals/edit/'.$animal['id'] ?>" type="button" class="btn btn-outline-success m-2">Edit</a>
+                                <form action="<?= URL ?>animals/delete/<?=$animal['id'] ?>" method="post">
+                                    <button type="submit" class="btn btn-outline-danger m-2">Delete</button>
+                                </form>    
                             </div>
                             </div>
                         </li>
