@@ -20,4 +20,8 @@ class App {
                return ((new H)->home());
         }
     }
+
+    static public function view($name) {
+        require DIR . 'resources/view/' . $name . '.php';
+    }
 }
