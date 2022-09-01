@@ -59,6 +59,9 @@ class App {
         }
 
         if ($method == 'GET' && count($url) == 1 && $url[0] == 'login') {
+            if (Auth::isLoged()) {
+                return self::redirect('');
+            }
             return((new L)->login());
         }
 
