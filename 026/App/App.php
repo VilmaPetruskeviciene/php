@@ -6,6 +6,7 @@ use App\Controllers\HomeController as H;
 use App\Controllers\AnimalController as A;
 use App\Controllers\LoginController as L;
 use App\Controllers\ApiController as Api;
+use App\Controllers\ReactController as R;
 use App\Middlewares\Auth;
 
 class App {
@@ -82,12 +83,39 @@ class App {
             return (new Api)->doApi();
         }
 
+        // REACT
+
+        if ($method == 'OPTIONS') {
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Methods: GET, POST, DELETE');
+            header('Access-Control-Allow-Headers: Content-Type');
+        }
+
+        if ($method == 'GET' && count($url) == 2 && $url[0] == 'react' && $url[1] == 'list') {
+            return (new R)->list();
+        }
+        if ($method == 'POST' && count($url) == 2 && $url[0] == 'react' && $url[1] == 'list') {
+            return (new R)->store();
+        }
+        if ($method == 'DELETE' && count($url) == 3 && $url[0] == 'react' && $url[1] == 'list') {
+            return (new R)->delete($url[2]);
+        }
+
     }
 
     static public function view($name, $data = [])
     {
         extract($data);
         require DIR . 'resources/view/' . $name . '.php';
+    }
+
+    static public function json(array $data)
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, DELETE');
+        header("Access-Control-Allow-Headers: X-Requested-With");
+        header("Content-Type: application/json");
+        echo json_encode($data);
     }
 
     static public function redirect($where)

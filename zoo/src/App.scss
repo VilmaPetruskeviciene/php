@@ -1,1 +1,92 @@
 @import "~bootstrap/scss/bootstrap";
+
+.line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    &__content {
+        margin: 8px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        &__type {
+            font-size: 28px;
+            color: skyblue;
+            margin-right: 10px;
+            line-height: 28px;
+            font-weight: bold;
+        }
+        &__weight {
+            font-size: 28px;
+            color: gray;
+            margin-right: 10px;
+            line-height: 28px;
+        }
+        &__tail {
+            width: 28px;
+            height: 28px;
+            background-color: crimson;
+        }
+    }
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+.user-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    .name {
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+.nav-link {
+    padding: 16px 10px;
+    max-width: 150px;
+}
+
+.nav-link.big {
+    width: 100%;
+    max-width: 100%;
+}
+
+.nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.msg-bin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column-reverse;
+    .msg {
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        min-width: 300px;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+.modal {
+    display: block;
+    background-color: #00000099;
+    .close {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        font-size: 28px;
+    }
+}
