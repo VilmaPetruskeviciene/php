@@ -1,7 +1,11 @@
 <?php
 
-App\App::view('top');
+App\App::view('top', ['title' => $title]);
 
-echo 'bla bla';
+?>
+
+<h1> <?= $welcome ?> </h1>
+
+<?php
 
 App\App::view('bottom');
