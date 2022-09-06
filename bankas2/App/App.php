@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Controllers\HomeController as H;
+use App\Controllers\UserController as U;
 
 class App {
 
@@ -18,6 +19,10 @@ class App {
 
         if ($method == 'GET' && count($url) == 1 && $url[0] == '') {
                return ((new H)->home());
+        }
+
+        if ($method == 'GET' && count($url) == 2 && $url[0] == 'users' && $url[1] == 'create') {
+            return ((new U)->create());
         }
     }
 
