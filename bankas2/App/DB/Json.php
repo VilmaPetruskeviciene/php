@@ -31,6 +31,16 @@ class Json implements DataBase {
         return $id;
     }
 
+    public function newIban()
+    {
+        $ibanNumber = 'LT';
+        for ($i = 0; $i < 18; $i++) {
+            $number = rand(0, 9);
+            $ibanNumber .= $number;
+        }
+        return $ibanNumber;
+    }
+
     public function __destruct()
     {
         file_put_contents(DIR . 'App/DB/data.json', json_encode($this->data));
@@ -39,6 +49,8 @@ class Json implements DataBase {
     public function create(array $userData) : void
     {
         $userData['id'] = $this->getId();
+        $userData['iban'] = $this->newIban();
+        $userData['likutis'] = 0;
         $this->data[] = $userData;
     }
 
