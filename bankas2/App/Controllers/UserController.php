@@ -7,6 +7,9 @@ use App\DB\Json;
 
 class UserController
 {
+    private $data;
+    private $errors = [];
+
     public function create()
     {
         return App::view('user_create', [
@@ -16,58 +19,43 @@ class UserController
 
     public function store()
     {
-        /*
-        $idUnique = true;
-        $vardas = $pavarde = $ak = '';
-        $msg = ['ak' => '', 'vardas' => '', 'pavarde' => ''];
-
-        if (isset($_POST['submit'])) {
-
-            if (strlen($_POST['vardas']) < 3) {
-                $msg['vardas'] = 'Vardas yra per trumpas!';
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(strlen($this->data['vardas']) < 3 || $this->data['vardas'] == strtolower($this->data['vardas'])) {
+                $this->addErr('vardas', 'Vardas yra per trumpas arba iš mažosios raidės!');
+            } 
+    
+            if(strlen($this->data['pavarde']) < 3 || $this->data['pavarde'] == strtolower($this->data['pavarde'])) {
+                $this->addErr('pavarde', 'Pavardė yra per trumpa arba iš mažosios raidės!'); 
+            }
+    
+            if(strlen($this->data['ak']) != 11) {
+                $this->addErr('ak', 'Neteisingas asmens kodo formatas!');   
             } else {
-                $vardas = $_POST['vardas'];
-                if ($vardas == strtolower($vardas)) {
-                    $msg['vardas'] = 'Vardas iš mažosios raidės!';
+                foreach (Json::connect()->showAll as $val) {
+                    if ($this->data['ak'] == in_array($this->data['ak'], $val)) {
+                        $this->addErr('ak', 'Toks asmens kodas jau yra!');
+                    }
                 }
             }
 
-            if (strlen($_POST['pavarde']) < 3) {
-                $msg['pavarde'] = 'Pavardė yra per trumpa!';
+            if (!empty($errors)) {
+                App::view('user_create', ['title' => 'User Create', 'errors' => $errors]);
             } else {
-                $pavarde = $_POST['pavarde'];
-                if ($pavarde == strtolower($pavarde)) {
-                    $msg['pavarde'] = 'Pavardė iš mažosios raidės!';
-                }
-            }
-
-            if(strlen($_POST['ak']) != 11) {
-                $msg['ak'] = 'Neteisingas asmens kodo formatas!';   
-            } else {
-                $ak = $_POST['ak'];
-            }
-
-            $data = json_decode(file_get_contents(DIR .'/DB/data.json'), 1);
-
-            foreach($data as $val) {
-                if($val['ak'] == $_POST['ak']) {
-                    $idUnique = false;
-                }
+                Json::connect()->create([
+                    'vardas' => $_POST['vardas'],
+                    'pavarde' => $_POST['pavarde'],
+                    'iban' => $_POST['iban'],
+                    'ak' => $_POST['ak'],
+                    'likutis' => $_POST['likutis']
+                ]);
+                return App::redirect(''); 
             }
         }
+            
+    }
 
-        if($idUnique && !array_filter($msg)) {*/
-            Json::connect()->create([
-                'vardas' => $_POST['vardas'],
-                'pavarde' => $_POST['pavarde'],
-                'iban' => $_POST['iban'],
-                'ak' => $_POST['ak'],
-                'likutis' => $_POST['likutis']
-            ]);
-            return App::redirect(''); 
-            /*  
-        } else {
-            $msg['ak'] = 'Neteisingas asmens kodo formatas arba toks asmens kodas jau yra!';  
-        } */
+    private function addErr(string $key, string $val)
+    {
+        $this->errors[$key] = $val;
     }
 }

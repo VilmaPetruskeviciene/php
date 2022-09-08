@@ -20,15 +20,14 @@ App\App::view('top', ['title' => $title]);
                             <input type="text" class="form-control" name="pavarde" value="<?= $_POST['pavarde'] ?? ''?>" required>
                         </div>
                         <div class="form-group">
-                            <label>Sąskaitos numeris:</label>
-                            <input type="text" class="form-control" name="iban" value="<?= $_POST['iban'] ?? ''?>" readonly required>
+                            <input type="text" class="form-control" name="iban" hidden>
                         </div>
                         <div class="form-group">
                             <label>Asmens kodas:</label>
                             <input type="text" class="form-control" name="ak" value="<?= $_POST['ak'] ?? ''?>" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="likutis" class="form-control" value="0" hidden>
+                            <input type="text" name="likutis" class="form-control" hidden>
                         </div>
                         <button type="submit" class="btn btn-primary mt-5">Sukurti sąskaitą</button>
                     </form>    
