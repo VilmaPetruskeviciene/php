@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class NiceController extends Controller
 {
-    public function fun($duok, $kuku)
+    public function fun($kiek, $abc)
     {
-        return $kuku . ' FUN: ' . $duok;
+        $mas = ['asilas', 'karvius', 'bulius', 'kalakutas'];
+        return view('kitkas.fun', ['abc' => $abc, 'mas' => $mas, 'kiek' => $kiek]);
     }
 }

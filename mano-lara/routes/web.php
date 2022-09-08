@@ -22,4 +22,4 @@ Route::get('/eziukas', fn() => '<h1>EZIUKAS</h1>');
 Route::get('/bebriukas', function() {return '<h1>CIA NE EZIUKAS</h1>';});
 
 
-Route::get('/fun/{kiek}/{abc}', [Nice::class, 'fun']);
+Route::get('/fun/{kiek}/{abc?}', [Nice::class, 'fun']);
