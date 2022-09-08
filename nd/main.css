@@ -1,0 +1,14 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+.center {
+    justify-content: center;
+}
+
+p {
+    margin: 0 auto;
+}
