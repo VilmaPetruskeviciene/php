@@ -9,4 +9,5 @@
     <title><?= $title ?? 'My Bank' ?></title>
 </head>
 <body>
-    
+    <?php
+    App\App::view('nav');

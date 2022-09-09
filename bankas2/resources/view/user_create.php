@@ -4,7 +4,7 @@ App\App::view('top', ['title' => $title]);
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-5">
+        <div class="col-6">
             <div class="card m-4">
                 <div class="card-header">
                     <h2>New User</h2>

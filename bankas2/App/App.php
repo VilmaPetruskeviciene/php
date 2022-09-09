@@ -28,6 +28,10 @@ class App {
         if ($method == 'POST' && count($url) == 2 && $url[0] == 'users' && $url[1] == 'store') {
             return ((new U)->store());
         }
+
+        if ($method == 'GET' && count($url) == 1 && $url[0] == 'users') {
+            return ((new U)->list());
+        }
     }
 
     static public function view($name, $data = []) {

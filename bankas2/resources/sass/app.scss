@@ -6,3 +6,42 @@ h1 {
         color: crimson;
     }
 }
+
+.line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .line_content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        margin: 8px;
+        .line_content_vardas {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .line_content_ak {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .line_content_iban {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .line_content_likutis {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+    }
+    .line_buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+    }
+}
