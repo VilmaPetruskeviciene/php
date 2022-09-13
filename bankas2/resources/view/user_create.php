@@ -13,18 +13,18 @@ App\App::view('top', ['title' => $title]);
                     <form action="<?= URL ?>/users/store" method="post">
                         <div class="form-group">
                             <label>Vardas:</label>
-                            <input type="text" class="form-control" name="vardas" value="<?= $_POST['vardas'] ?? ''?>" required>
+                            <input type="text" class="form-control" name="vardas" required>
                         </div>
                         <div class="form-group">
                             <label>Pavardė:</label>
-                            <input type="text" class="form-control" name="pavarde" value="<?= $_POST['pavarde'] ?? ''?>" required>
+                            <input type="text" class="form-control" name="pavarde" required>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" name="iban" hidden>
                         </div>
                         <div class="form-group">
                             <label>Asmens kodas:</label>
-                            <input type="text" class="form-control" name="ak" value="<?= $_POST['ak'] ?? ''?>" required>
+                            <input type="text" class="form-control" name="ak" required>
                         </div>
                         <div class="form-group">
                             <input type="text" name="likutis" class="form-control" hidden>

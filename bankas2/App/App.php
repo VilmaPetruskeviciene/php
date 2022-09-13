@@ -32,6 +32,14 @@ class App {
         if ($method == 'GET' && count($url) == 1 && $url[0] == 'users') {
             return ((new U)->list());
         }
+
+        if ($method == 'GET' && count($url) == 3 && $url[0] == 'users' && $url[1] == 'add') {
+            return ((new U)->add((int) $url[2]));
+        }
+
+        if ($method == 'POST' && count($url) == 3 && $url[0] == 'users' && $url[1] == 'addUpdate') {
+            return ((new U)->addUpdate((int) $url[2]));
+        }
     }
 
     static public function view($name, $data = []) {

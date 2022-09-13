@@ -4,7 +4,7 @@ App\App::view('top', ['title' => $title]);
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-10">
+        <div class="col-8">
             <div class="card m-4">
                 <div class="card-header">
                     <h2>Users List</h2>
@@ -21,7 +21,7 @@ App\App::view('top', ['title' => $title]);
                                     <div class="line_content_likutis">Likutis: <?= $user['likutis'] ?> EUR</div>
                                 </div>
                                 <div class="line_buttons">
-                                    <button type="button" class="btn btn-outline-success m-2">Pridėti lėšų</button>
+                                    <a href="<?= URL.'/users/add/'.$user['id'] ?>" type="button" class="btn btn-outline-success m-2">Pridėti lėšų</a>
                                     <button type="button" class="btn btn-outline-warning m-2">Nuskaičiuoti lėšas</button>
                                     <button type="button" class="btn btn-outline-danger m-2">Ištrinti sąskaitą</button>
                                 </div>
