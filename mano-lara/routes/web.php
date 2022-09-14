@@ -23,3 +23,9 @@ Route::get('/bebriukas', function() {return '<h1>CIA NE EZIUKAS</h1>';});
 
 
 Route::get('/fun/{kiek}/{abc?}', [Nice::class, 'fun']);
+
+Route::get('/suma', [Nice::class, 'showForm'])->name('show');
+Route::post('/suma', [Nice::class, 'doForm'])->name('calculate');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
