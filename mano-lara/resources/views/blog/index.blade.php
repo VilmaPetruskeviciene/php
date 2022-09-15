@@ -7,6 +7,9 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Posts</h2>
+                    @foreach($c as $letter)
+                        <h3>{{$letter}}</h3>
+                    @endforeach
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
@@ -18,7 +21,7 @@
                                 </div>
                                 <div class="buttons">
                                     <a href="{{route('show', $blog)}}" class="btn btn-info">Show</a>
-                                    <button type="button" class="btn btn-success">Edit</button>
+                                    <a href="{{route('edit', $blog)}}" class="btn btn-success">Edit</a>
                                     <form action="{{route('delete', $blog)}}" method="post">
                                         @csrf
                                         @method('delete')
@@ -26,7 +29,6 @@
                                     </form>
                                 </div>
                             </div>
-
                         </li>
                         @empty
                         <li class="list-group-item">No posts found</li>
