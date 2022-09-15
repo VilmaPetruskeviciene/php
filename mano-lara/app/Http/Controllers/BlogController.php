@@ -14,7 +14,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        $blogs = Blog::all();
+        return view('blog.index', ['blogs' => $blogs]);
     }
 
     /**
@@ -35,7 +36,11 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $blog = new Blog;
+        $blog->title = $request->title;
+        $blog->post = $request->post;
+        $blog->save();
+        return redirect()->route('index');
     }
 
     /**
@@ -46,7 +51,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        return view('blog.show', ['blog' => $blog]);
     }
 
     /**
@@ -80,6 +85,7 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+        $blog->delete();
+        return redirect()->route('index');
     }
 }

@@ -35,4 +35,6 @@ Route::prefix('blog')->group(function () {
     Route::get('/', [B::class, 'index'])->name('index');
     Route::get('/create', [B::class, 'create'])->name('create');
     Route::post('/create', [B::class, 'store'])->name('store');
+    Route::get('/show/{blog}', [B::class, 'show'])->name('show');
+    Route::delete('/delete/{blog}', [B::class, 'destroy'])->name('delete');
 });

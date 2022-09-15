@@ -16,7 +16,7 @@
                         </div>
                         <div class="input-group">
                             <span class="input-group-text">Post</span>
-                            <textarea class="form-control"></textarea>
+                            <textarea class="form-control" name="post"></textarea>
                         </div>
                         @csrf
                         <button type="submit" class="btn btn-secondary mt-4">Create</button>
