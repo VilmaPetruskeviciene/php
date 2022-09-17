@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mechanics;
-use App\Http\Requests\StoreMechanicsRequest;
-use App\Http\Requests\UpdateMechanicsRequest;
+use Illuminate\Http\Request;
 
 class MechanicsController extends Controller
 {
@@ -25,16 +24,16 @@ class MechanicsController extends Controller
      */
     public function create()
     {
-        //
+        return view('mechanic.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMechanicsRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMechanicsRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -64,11 +63,11 @@ class MechanicsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMechanicsRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Mechanics  $mechanics
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMechanicsRequest $request, Mechanics $mechanics)
+    public function update(Request $request, Mechanics $mechanics)
     {
         //
     }
