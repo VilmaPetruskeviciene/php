@@ -14,7 +14,10 @@ class MechanicsController extends Controller
      */
     public function index()
     {
-        //
+        $mechanics = Mechanics::all();
+        return view('mechanic.index', [
+            'mechanics' => $mechanics
+        ]);
     }
 
     /**
@@ -35,7 +38,11 @@ class MechanicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mechanics = new Mechanics;
+        $mechanics->name = $request->name;
+        $mechanics->surname = $request->surname;
+        $mechanics->save();
+        return redirect()->route('m_index');
     }
 
     /**
@@ -46,7 +53,9 @@ class MechanicsController extends Controller
      */
     public function show(Mechanics $mechanics)
     {
-        //
+        return view('mechanic.show', [
+            'mechanics' => $mechanics
+        ]);
     }
 
     /**
@@ -57,7 +66,9 @@ class MechanicsController extends Controller
      */
     public function edit(Mechanics $mechanics)
     {
-        //
+        return view('mechanic.edit', [
+            'mechanics' => $mechanics
+        ]);
     }
 
     /**
@@ -69,7 +80,10 @@ class MechanicsController extends Controller
      */
     public function update(Request $request, Mechanics $mechanics)
     {
-        //
+        $mechanics->name = $request->name;
+        $mechanics->surname = $request->surname;
+        $mechanics->save();
+        return redirect()->route('m_index');
     }
 
     /**
@@ -80,6 +94,7 @@ class MechanicsController extends Controller
      */
     public function destroy(Mechanics $mechanics)
     {
-        //
+        $mechanics->delete();
+        return redirect()->route('m_index');
     }
 }
