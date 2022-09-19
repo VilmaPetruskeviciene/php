@@ -44,6 +44,27 @@ class TrucksController extends Controller
     public function store(Request $request)
     {
         $truck = new Trucks;
+
+        if ($request->file('photo')) {
+
+            $photo = $request->file('photo');
+
+            $ext = $photo->getClientOriginalExtension();
+
+            $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
+
+            $file = $name. '-' . rand(100000, 999999). '.' . $ext;
+
+            //$Image = Image::make($photo)->pixelate(12);
+
+            //$Image->save(public_path().'/images/'.$file);
+
+            $photo->move(public_path().'/trucks', $file);
+
+            $truck->photo = asset('/trucks') . '/' . $file;
+
+        }
+
         $truck->maker = $request->maker;
         $truck->plate = $request->plate;
         $truck->make_year = $request->make_year;
