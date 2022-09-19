@@ -75,7 +75,11 @@ class TrucksController extends Controller
      */
     public function edit(Trucks $trucks)
     {
-        //
+        $mechanics = Mechanics::all();
+        return view('truck.edit', [
+            'mechanics' => $mechanics,
+            'trucks' => $trucks
+        ]);
     }
 
     /**
@@ -87,7 +91,14 @@ class TrucksController extends Controller
      */
     public function update(Request $request, Trucks $trucks)
     {
-        //
+        $trucks->maker = $request->maker;
+        $trucks->plate = $request->plate;
+        $trucks->make_year = $request->make_year;
+        $trucks->mechanic_notices = $request->mechanic_notices;
+        $trucks->mechanic_id = $request->mechanic_id;
+        $trucks->save();
+
+        return redirect()->route('t_index');
     }
 
     /**
@@ -98,6 +109,7 @@ class TrucksController extends Controller
      */
     public function destroy(Trucks $trucks)
     {
-        //
+        $trucks->delete();
+        return redirect()->route('t_index');
     }
 }
