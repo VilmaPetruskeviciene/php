@@ -103,6 +103,35 @@
     }
 }
 
+.mechanic {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    h5 {
+        margin: 10px;
+        font-size: 40px;
+        color: crimson;
+    }
+}
+
+.truck-show {
+    .line {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        margin: 0 0 10px 0;
+        h5 {
+            margin: 0 0 0 5px;
+        }
+    }
+    p {
+        font-family: 'Courier New', Courier, monospace;
+        color: gray;
+    }
+}
+
 textarea.form-control {
     min-height: 200px;
 }

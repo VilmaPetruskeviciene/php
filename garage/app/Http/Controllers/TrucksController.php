@@ -62,7 +62,9 @@ class TrucksController extends Controller
      */
     public function show(Trucks $trucks)
     {
-        //
+        return view('truck.show', [
+            'trucks' => $trucks
+        ]);
     }
 
     /**
