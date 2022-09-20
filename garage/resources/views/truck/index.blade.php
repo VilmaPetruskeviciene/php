@@ -17,6 +17,9 @@
                                     <h2><span>Plate: </span>{{$truck->plate}} </h2>
                                     <h4><span>Maker: </span>{{$truck->maker}}</h4>
                                     <h5><span>Mechanic: </span><a href="{{route('m_show', $truck->getMechanic->id)}}">{{$truck->getMechanic->name}} {{$truck->getMechanic->surname}}</a></h5>
+                                    @if($truck->photo)
+                                    <h5><a href="{{$truck->photo}}" target="_BLANK">Photo</a></h5>  
+                                    @endif
                                 </div>
                                 <div class="buttons">
                                     <a href="{{route('t_show', $truck)}}" class="btn btn-info">Show</a>

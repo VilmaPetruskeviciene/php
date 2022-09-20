@@ -132,6 +132,20 @@
     }
 }
 
+.img {
+    img {
+        width: auto;
+        height: 300px;
+    }
+}
+
+.img-small {
+    img {
+        width: auto;
+        height: 100px;
+    }
+}
+
 textarea.form-control {
     min-height: 200px;
 }
