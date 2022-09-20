@@ -20,7 +20,12 @@ class Json implements DataBase {
         $this->data = json_decode(file_get_contents(DIR . 'App/DB/data.json'), 1);
     }
 
-    private function getId() : int
+    public function __destruct()
+    {
+        file_put_contents(DIR . 'App/DB/data.json', json_encode($this->data));
+    }
+
+    public function getId() : int
     {
         if (!file_exists(DIR . 'App/DB/data_id.json')) {
             file_put_contents(DIR . 'App/DB/data_id.json', json_encode(0));
@@ -39,11 +44,6 @@ class Json implements DataBase {
             $ibanNumber .= $number;
         }
         return $ibanNumber;
-    }
-
-    public function __destruct()
-    {
-        file_put_contents(DIR . 'App/DB/data.json', json_encode($this->data));
     }
 
     public function create(array $userData) : void
@@ -82,11 +82,16 @@ class Json implements DataBase {
             if ($user['id'] == $userId) {
                 return $user;
             }
-        } 
+        }
+        return [];
     }
 
     public function showAll() : array
     {
+        usort($this->data, 
+            function ($a, $b)
+            {return $a['pavarde'] <=> $b['pavarde'];
+            });
         return $this->data;
     }
 }
