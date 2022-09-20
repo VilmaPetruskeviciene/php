@@ -84,20 +84,19 @@ class UserController {
     public function addUpdate(int $id)
     {
         foreach (Json::connect()->showAll() as $val) {
-            if ($val['id'] == $id) {
-                $money = $val['likutis'];
+            if ($val['id'] == $id && $_POST['addMoney'] > 0) {
+                $val['likutis'] += $_POST['addMoney'];
+                Json::connect()->addUpdate($id, [
+                    'vardas' => $_POST['vardas'],
+                    'pavarde' => $_POST['pavarde'],
+                    'iban' => $_POST['iban'],
+                    'ak' => $_POST['ak'],
+                    'likutis' => $_POST['likutis']
+                ]);
+                return App::redirect('/users'); 
             }
-            $suma = (int)$money + (int)$_POST['addMoney'];
-        }
-
-        Json::connect()->update($id, [
-            'vardas' => $_POST['vardas'],
-            'pavarde' => $_POST['pavarde'],
-            'iban' => $_POST['iban'],
-            'ak' => $_POST['ak'],
-            'likutis' => $suma
-        ]);
-        return App::redirect(''); 
+            return App::redirect('/add/'.$id); 
+        }   
     }
-    
+
 }

@@ -37,8 +37,8 @@ class App {
             return ((new U)->add((int) $url[2]));
         }
 
-        if ($method == 'POST' && count($url) == 3 && $url[0] == 'users' && $url[1] == 'addUpdate') {
-            return ((new U)->addUpdate((int) $url[2]));
+        if ($method == 'POST' && count($url) == 3 && $url[0] == 'users' && $url[1] == 'update') {
+            return ((new U)->update((int) $url[2]));
         }
     }
 

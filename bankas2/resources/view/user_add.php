@@ -10,7 +10,7 @@ App\App::view('top', ['title' => $title]);
                     <h2>Pridėti lėšų</h2>
                 </div>
                 <div class="card-body">
-                    <form action="<?= URL ?>/users/store" method="post">
+                    <form action="<?= URL ?>/users/addUpdate/<?= $user['id'] ?>" method="post">
                         <div class="form-group">
                             <label>Vardas:</label>
                             <input type="text" class="form-control" name="vardas" value="<?= $user['vardas']?>" readonly>
