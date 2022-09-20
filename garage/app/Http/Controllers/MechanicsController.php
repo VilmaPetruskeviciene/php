@@ -12,11 +12,30 @@ class MechanicsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $mechanics = Mechanics::all();
+        $perPage = match($request->per_page) {
+            'all' => 100000,
+            '5' => 5,
+            '10' => 10,
+            '15' => 15,
+            '20' => 20,
+            '50' => 50,
+            default => 100000
+        };
+
+        $mechanics = match ($request->sort) {
+            'name_asc' => Mechanics::orderBy('name', 'asc')->paginate($perPage)->withQueryString(),
+            'name_desc' => Mechanics::orderBy('name', 'desc')->paginate($perPage)->withQueryString(),
+            'surname_asc' => Mechanics::orderBy('surname', 'asc')->paginate($perPage)->withQueryString(),
+            'surname_desc' => Mechanics::orderBy('surname', 'desc')->paginate($perPage)->withQueryString(),
+            default => Mechanics::paginate($perPage)->withQueryString()
+        };
+        
         return view('mechanic.index', [
-            'mechanics' => $mechanics
+            'mechanics' => $mechanics,
+            'sortSelect' => $request->sort,
+            'perPage' => $perPage
         ]);
     }
 

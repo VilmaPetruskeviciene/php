@@ -17,9 +17,11 @@ class TrucksController extends Controller
     public function index()
     {
         $trucks = Trucks::all();
+        $mechanics = Mechanics::orderBy('surname')->get();
 
         return view('truck.index', [
-            'trucks' => $trucks
+            'trucks' => $trucks,
+            'mechanics' => $mechanics
         ]);
     }
 
@@ -30,7 +32,8 @@ class TrucksController extends Controller
      */
     public function create()
     {
-        $mechanics = Mechanics::all();
+        $mechanics = Mechanics::orderBy('name')->orderBy('surname', 'desc')->get();
+        //$mechanics = $mechanics->sortBy('name');
         return view('truck.create', [
             'mechanics' => $mechanics
         ]);
