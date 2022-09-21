@@ -14,14 +14,37 @@ class TrucksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trucks = Trucks::all();
+        if ($request->mech) {
+            $id = (int) $request->mech;
+            if($request->s) {
+                $trucks = Trucks::where('mechanic_id', $id)->where(function($query) use ($request){
+                    $query->where('maker', 'like', '%'.$request->s.'%')
+                    ->orWhere('make_year', 'like', '%'.$request->s.'%')
+                    ->orWhere('plate', 'like', '%'.$request->s.'%');
+                })->paginate(15)->withQueryString();
+            } else {
+                $trucks = Trucks::where('mechanic_id', $id)->paginate(15)->withQueryString();
+            }
+        } else {
+            if($request->s) {
+                $trucks = Trucks::where('maker', 'like', '%'.$request->s.'%')
+                ->orWhere('make_year', 'like', '%'.$request->s.'%')
+                ->orWhere('plate', 'like', '%'.$request->s.'%')
+                ->paginate(15)->withQueryString();
+            } else {
+                $trucks = Trucks::paginate(15)->withQueryString();
+            }
+        }
+
         $mechanics = Mechanics::orderBy('surname')->get();
 
         return view('truck.index', [
             'trucks' => $trucks,
-            'mechanics' => $mechanics
+            'mechanics' => $mechanics,
+            'mech' => $id ?? 0,
+            's' => $request->s ?? ''
         ]);
     }
 

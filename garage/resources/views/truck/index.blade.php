@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container --content">
     <div class="row justify-content-center">
         <div class="col-9">
             <div class="card">
                 <div class="card-header">
                     <h2>Truck</h2>
-                    <form action="{{route('m_index')}}" method="get">
+                    <form action="{{route('t_index')}}" method="get">
                         <div class="container">
                             <div class="row">
                                 <div class="col-5">
@@ -15,8 +15,9 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <select name="mech" class="form-select mt-1">
+                                                    <option value="0">All</option>
                                                     @foreach($mechanics as $mechanic)
-                                                        <option value="{{$mechanic->id}}">{{$mechanic->name}} {{$mechanic->surname}}</option>
+                                                        <option value="{{$mechanic->id}}" @if($mech == $mechanic->id) selected @endif>{{$mechanic->name}} {{$mechanic->surname}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -29,14 +30,14 @@
                                 <div class="col-7">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-3">
-                                                <select name="per_page" class="form-select mt-1">
-                                                   
-                                                </select>
+                                            <div class="col-9">
+                                            <div class="input-group mb-3">
+                                                <input type="text" name="s" class="form-control" value="{{$s}}">
+                                                <button type="submit" class="input-group-text">Search</button>
                                             </div>
-                                            <div class="col-6">
-                                                
-                                                <a href="{{route('m_index')}}" class="btn btn-secondary m-1">Reset</a>
+                                            </div>
+                                            <div class="col-3">
+                                                <a href="{{route('t_index')}}" class="btn btn-secondary m-1">Reset</a>
                                             </div>
                                         </div>
                                     </div>
@@ -53,6 +54,7 @@
                                 <div class="content">
                                     <h2><span>plate: </span>{{$truck->plate}}</h2>
                                     <h4><span>maker: </span>{{$truck->maker}}</h4>
+                                    <h4><span>year: </span>{{$truck->make_year}}</h4>
                                     <h5>
                                         <span>mechanic: </span>
                                         <a href="{{route('m_show', $truck->getMechanic->id)}}">
@@ -77,6 +79,9 @@
                         <li class="list-group-item">No trucks found</li>
                         @endforelse
                     </ul>
+                </div>
+                <div class="me-3 mx-3">
+                    {{ $trucks->links() }}
                 </div>
             </div>
         </div>
