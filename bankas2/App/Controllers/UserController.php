@@ -73,30 +73,35 @@ class UserController {
         ]);
     }
 
-    public function add(int $id)
-    {
+    public function add(int $id) {
         return App::view('user_add', [
             'title' => 'Pridėti lėšų',
             'user' => Json::connect()->show($id)
         ]);
     }
 
-    public function addUpdate(int $id)
-    {
-        foreach (Json::connect()->showAll() as $val) {
-            if ($val['id'] == $id && $_POST['addMoney'] > 0) {
-                $val['likutis'] += $_POST['addMoney'];
-                Json::connect()->addUpdate($id, [
-                    'vardas' => $_POST['vardas'],
-                    'pavarde' => $_POST['pavarde'],
-                    'iban' => $_POST['iban'],
-                    'ak' => $_POST['ak'],
-                    'likutis' => $_POST['likutis']
-                ]);
-                return App::redirect('/users'); 
+    public function addUpdate(int $id) {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(!empty($_POST['add'])) {
+                if($_POST['add'] > 0) {
+                foreach(Json::connect()->showAll() as $val) {
+                    if($val['id'] == $id) {
+                        $addMoney = $val['likutis'];
+                        $suma = (int)$addMoney + (int)$_POST['add'];
+                        Json::connect()->update($id, [
+                            'likutis' => $suma
+                        ]);
+                        return App::redirect('/users');
+                        } 
+                    }
+                }
             }
-            return App::redirect('/add/'.$id); 
-        }   
+        } 
     }
-
+           
+    
 }
+
+
+
+        

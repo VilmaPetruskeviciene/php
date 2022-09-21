@@ -33,7 +33,7 @@ App\App::view('top', ['title' => $title]);
                         </div>
                         <div class="form-group">
                             <label>Pridedama:</label>
-                            <input type="text" class="form-control" name="addMoney">
+                            <input type="text" class="form-control" name="add">
                         </div>
                         <button type="submit" class="btn btn-primary mt-5">Pridėti lėšų</button>
                     </form>    
