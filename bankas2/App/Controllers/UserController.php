@@ -98,7 +98,32 @@ class UserController {
             }
         } 
     }
-           
+      
+    public function remove(int $id) {
+        return App::view('user_remove', [
+            'title' => 'Atimti lėšas',
+            'user' => Json::connect()->show($id)
+        ]);
+    }
+
+    public function removeUpdate(int $id) {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(!empty($_POST['remove'])) {
+                foreach(Json::connect()->showAll() as $val) {
+                    if($val['id'] == $id) {
+                        if($_POST['remove'] <= $val['likutis']) {
+                            $removeMoney = $val['likutis'];
+                            $remove = (int)$removeMoney - (int)$_POST['remove'];
+                            Json::connect()->update($id, [
+                                'likutis' => $remove
+                            ]);
+                            return App::redirect('/users');
+                        }
+                    } 
+                }
+            }
+        }
+    } 
     
 }
 

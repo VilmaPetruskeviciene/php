@@ -40,6 +40,14 @@ class App {
         if ($method == 'POST' && count($url) == 3 && $url[0] == 'users' && $url[1] == 'addUpdate') {
             return ((new U)->addUpdate((int) $url[2]));
         }
+
+        if ($method == 'GET' && count($url) == 3 && $url[0] == 'users' && $url[1] == 'remove') {
+            return ((new U)->remove((int) $url[2]));
+        }
+
+        if ($method == 'POST' && count($url) == 3 && $url[0] == 'users' && $url[1] == 'removeUpdate') {
+            return ((new U)->removeUpdate((int) $url[2]));
+        } 
     }
 
     static public function view($name, $data = []) {

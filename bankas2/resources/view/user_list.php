@@ -22,7 +22,7 @@ App\App::view('top', ['title' => $title]);
                                 </div>
                                 <div class="line_buttons">
                                     <a href="<?= URL.'/users/add/'.$user['id'] ?>" type="button" class="btn btn-outline-success m-2">Pridėti lėšų</a>
-                                    <button type="button" class="btn btn-outline-warning m-2">Nuskaičiuoti lėšas</button>
+                                    <a href="<?= URL.'/users/remove/'.$user['id'] ?>" type="button" class="btn btn-outline-warning m-2">Nuskaičiuoti lėšas</a>
                                     <button type="button" class="btn btn-outline-danger m-2">Ištrinti sąskaitą</button>
                                 </div>
                             </div>
