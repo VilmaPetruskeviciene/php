@@ -31,15 +31,7 @@ class BreakdownController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -47,9 +39,32 @@ class BreakdownController extends Controller
      * @param  \App\Http\Requests\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function list()
+    {
+        $breakdowns = Breakdown::orderBy('updated_at', 'desc')->get();
+        $html = view('breakdown.list')->with('breakdowns', $breakdowns)->render();
+        return response()->json([
+            'html' => $html
+        ]);
+    }
+
+
     public function store(Request $request)
     {
-        //
+        $breakdown = new Breakdown;
+        $breakdown->truck_id = (int) $request->truck_id;
+        $breakdown->title = $request->title;
+        $breakdown->notes = $request->notes;
+        $breakdown->status = (int) $request->status;
+        $breakdown->price = (float) $request->price;
+        $breakdown->discount = (float) $request->discount;
+        $breakdown->save();
+
+        return response()->json([
+            'msg' => 'All good',
+            'status' => 'OK'
+        ]);
     }
 
     /**

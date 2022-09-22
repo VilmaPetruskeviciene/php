@@ -7,7 +7,7 @@
             @include('breakdown.create')
         </div>
 
-        <div class="col-7">
+        <div class="col-7" id="breakdowns-list">
             list
         </div>
 
