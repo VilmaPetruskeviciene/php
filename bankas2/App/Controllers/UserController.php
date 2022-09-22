@@ -124,6 +124,13 @@ class UserController {
             }
         }
     } 
+
+    public function delete(int $id) {
+        return var_dump($id);/*App::redirect('/users');*/
+        //Json::connect()->delete($id);
+    }
+        
+    
     
 }
 

@@ -47,6 +47,10 @@ class App {
 
         if ($method == 'POST' && count($url) == 3 && $url[0] == 'users' && $url[1] == 'removeUpdate') {
             return ((new U)->removeUpdate((int) $url[2]));
+        }
+
+        if ($method == 'POST' && count($url) == 3 && $url[0] == 'users' && $url[1] == 'delete') {
+            return ((new U)->delete((int) $url[2]));
         } 
     }
 
