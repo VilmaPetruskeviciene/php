@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Breakdown;
 use App\Models\Mechanics;
+use App\Models\Trucks;
 use Illuminate\Http\Request;
 
 class BreakdownController extends Controller
@@ -18,6 +19,15 @@ class BreakdownController extends Controller
         $mechanics = Mechanics::orderBy('surname')->get();
         return view('breakdown.index', [
             'mechanics' => $mechanics
+        ]);
+    }
+
+    public function trucksList(int $mechanicId)
+    {
+        $trucks = Trucks::where('mechanic_id', $mechanicId)->orderBy('plate')->get();
+        $html = view('breakdown.trucks-list')->with('trucks', $trucks)->render();
+        return response()->json([
+            'html' => $html
         ]);
     }
 
