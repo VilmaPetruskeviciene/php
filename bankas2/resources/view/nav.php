@@ -13,7 +13,7 @@
                     <a class="nav-link" href="<?= URL ?>/users/create">New User</a>
                 </li>
                 <?php if(App\Middlewares\Auth::isLoged()) : ?>
-                <li class="nav-item">
+                <li class="nav-item big">
                     <div class="user-nav">
                         <div class="name"><?= $_SESSION['user']['name'] ?></div>
                         <form action="<?= URL ?>/logout" method="post">

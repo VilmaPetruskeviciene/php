@@ -11,3 +11,4 @@
 <body>
     <?php
     App\App::view('nav');
+    App\App::view('msg');

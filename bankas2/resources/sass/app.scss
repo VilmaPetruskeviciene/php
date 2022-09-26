@@ -50,8 +50,44 @@ h1 {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    width: 100%;
     .name {
         font-size: 20px;
         font-weight: bold;
     }
 }
+
+.nav-link {
+    padding: 16px 10px;
+    max-width: 150px;
+}
+
+.nav-link.big {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.msg-bin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    .msg {
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        min-width: 300px;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
