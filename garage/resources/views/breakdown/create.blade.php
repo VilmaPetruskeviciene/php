@@ -26,9 +26,9 @@
                         </div>
 
                         <select data-create name="status" class="form-select mb-3">
-                        <option value="1">Created</option>
-                        <option value="2">In progress</option>
-                        <option value="3">Well done</option>
+                        @foreach($status as $key => $value)
+                            <option value="{{$key}}">{{$value}}</option>
+                        @endforeach
                     </select>
 
                         <div class="input-group mb-3">

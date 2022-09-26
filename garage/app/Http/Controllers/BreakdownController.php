@@ -18,7 +18,8 @@ class BreakdownController extends Controller
     {
         $mechanics = Mechanics::orderBy('surname')->get();
         return view('breakdown.index', [
-            'mechanics' => $mechanics
+            'mechanics' => $mechanics,
+            'status' => Breakdown::STATUS
         ]);
     }
 
@@ -43,7 +44,10 @@ class BreakdownController extends Controller
     public function list()
     {
         $breakdowns = Breakdown::orderBy('updated_at', 'desc')->get();
-        $html = view('breakdown.list')->with('breakdowns', $breakdowns)->render();
+        $html = view('breakdown.list')
+        ->with('breakdowns', $breakdowns)
+        ->with('status', Breakdown::STATUS)
+        ->render();
         return response()->json([
             'html' => $html
         ]);
@@ -73,9 +77,15 @@ class BreakdownController extends Controller
      * @param  \App\Models\Breakdown  $breakdown
      * @return \Illuminate\Http\Response
      */
-    public function show(Breakdown $breakdown)
+    public function modal(Breakdown $breakdown)
     {
-        //
+        $html = view('breakdown.modal_content')
+        ->with('breakdown', $breakdown)
+        ->with('status', Breakdown::STATUS)
+        ->render();
+        return response()->json([
+            'html' => $html,
+        ]);
     }
 
     /**
@@ -109,6 +119,11 @@ class BreakdownController extends Controller
      */
     public function destroy(Breakdown $breakdown)
     {
-        //
+        $breakdown->delete();
+        return response()->json([
+            'msg' => 'All good',
+            'status' => 'OK',
+            'refresh' => 'list'
+        ]);
     }
 }
