@@ -126,14 +126,12 @@ class UserController {
     } 
 
     public function delete(int $id) {
-        return var_dump($id);/*App::redirect('/users');*/
-        //Json::connect()->delete($id);
-    }
-        
-    
-    
+        $duomenys = Json::connect()->show($id);
+        if ($duomenys['id'] == $id && $duomenys['likutis'] == 0) {
+        Json::connect()->delete($id);
+        return App::redirect('/users');
+    } 
 }
 
 
-
-        
+}

@@ -4,35 +4,36 @@ namespace App\DB;
 
 class Json implements DataBase {
 
-    private $data;
+    private $data, $file;
     static private $obj;
 
-    static public function connect()
+    static public function connect($file = 'data')
     {
-        return self::$obj ?? self::$obj = new self;
+        return self::$obj ?? self::$obj = new self($file);
     }
 
-    private function __construct()
+    private function __construct($file)
     {
-        if (!file_exists(DIR . 'App/DB/data.json')) {
-            file_put_contents(DIR . 'App/DB/data.json', json_encode([]));
+        $this->file = $file;
+        if (!file_exists(DIR . 'App/DB/'.$this->file.'.json')) {
+            file_put_contents(DIR . 'App/DB/'.$this->file.'.json', json_encode([]));
         }
-        $this->data = json_decode(file_get_contents(DIR . 'App/DB/data.json'), 1);
+        $this->data = json_decode(file_get_contents(DIR . 'App/DB/'.$this->file.'.json'), 1);
     }
 
     public function __destruct()
     {
-        file_put_contents(DIR . 'App/DB/data.json', json_encode($this->data));
+        file_put_contents(DIR . 'App/DB/'.$this->file.'.json', json_encode($this->data));
     }
 
     public function getId() : int
     {
-        if (!file_exists(DIR . 'App/DB/data_id.json')) {
-            file_put_contents(DIR . 'App/DB/data_id.json', json_encode(0));
+        if (!file_exists(DIR . 'App/DB/'.$this->file.'_id.json')) {
+            file_put_contents(DIR . 'App/DB/'.$this->file.'_id.json', json_encode(0));
         }
-        $id = json_decode(file_get_contents(DIR . 'App/DB/data_id.json'));
+        $id = json_decode(file_get_contents(DIR . 'App/DB/'.$this->file.'_id.json'));
         $id++;
-        file_put_contents(DIR . 'App/DB/data_id.json', json_encode($id));
+        file_put_contents(DIR . 'App/DB/'.$this->file.'_id.json', json_encode($id));
         return $id;
     }
 
@@ -67,9 +68,10 @@ class Json implements DataBase {
 
     public function delete(int $userId) : void
     {
-        foreach ($this->data as $index => $user) {
+        foreach($this->data as $key => $user) {
             if ($user['id'] == $userId) {
-                unset($this->data[$index]);
+                //var_dump($userId);
+                unset($this->data[$key]);
                 $this->data = array_values($this->data);
                 break;       
             }

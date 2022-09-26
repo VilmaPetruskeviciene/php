@@ -45,3 +45,13 @@ h1 {
         width: 100%;
     }
 }
+
+.user-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .name {
+        font-size: 20px;
+        font-weight: bold;
+    }
+}

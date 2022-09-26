@@ -23,9 +23,9 @@ App\App::view('top', ['title' => $title]);
                                 <div class="line_buttons">
                                     <a href="<?= URL.'/users/add/'.$user['id'] ?>" type="button" class="btn btn-outline-success m-2">Pridėti lėšų</a>
                                     <a href="<?= URL.'/users/remove/'.$user['id'] ?>" type="button" class="btn btn-outline-warning m-2">Nuskaičiuoti lėšas</a>
-                                    <form action="<?= URL.'/users/delete/'.$user['id'] ?>" method="post">
+                                    <form action="<?= URL ?>/users/delete/<?=$user['id'] ?>" method="post">
                                         <button type="submit" class="btn btn-outline-danger m-2">Ištrinti sąskaitą</button>
-                                    <form>
+                                    </form>
                                 </div>
                             </div>
                         </li>
