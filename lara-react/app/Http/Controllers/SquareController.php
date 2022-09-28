@@ -20,12 +20,23 @@ class SquareController extends Controller
             'text' => $request->text,
             'color' => $request->color,
         ];
-
         $request->session()->put('sq', $squares);
-
         return response()->json([
-            'squares' => $squares,
+            'msg' => 'ok',
         ]);
+    }
+
+    public function getSquares(Request $request)
+    {
+        $squares = Session::get('sq', []);
+        return response()->json([
+            'squares' => $squares
+        ]);
+    }
+
+    public function resetSquares()
+    {
+        $squares = Session::put('sq', []);
     }
 
 /*
