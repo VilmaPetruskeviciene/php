@@ -30,6 +30,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/red-square', [S::class, 'redSquare']);
+Route::post('/add-square', [S::class, 'addSquare']);
+
+
 Route::get('/red-square-blade', [S::class, 'redSquareBlade']);
 
 require __DIR__.'/auth.php';
