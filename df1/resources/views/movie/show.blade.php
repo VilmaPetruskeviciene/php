@@ -6,18 +6,26 @@
         <div class="col-9">
             <div class="card">
                 <div class="card-header">
-                    <h2>Truck</h2>
+                    <h2>Movie</h2>
                 </div>
                 <div class="card-body">
-                    <div class="truck-show">
-                        <div class="line"><small>Plate: </small><h5>{{$trucks->plate}}</h5></div>
-                        <div class="line"><small>Maker: </small><h5>{{$trucks->maker}}</h5></div>
-                        <div class="line"><small>Mechanic: </small><h5>{{$trucks->getMechanic->name}} {{$trucks->getMechanic->surname}}</h5></div>
-                        <p>{{$trucks->mechanic_notices}}</p>
-                        @if($trucks->photo)
-                            <div class="img">
-                                <img src="{{$trucks->photo}}">
-                            </div>
+                    <div class="movie-show">
+                        <div class="line"><small>Plate:</small>
+                            <h5>{{$movie->plate}}</h5>
+                        </div>
+                        <div class="line"><small>Maker:</small>
+                            <h5>{{$movie->maker}}</h5>
+                        </div>
+                        <div class="line"><small>Mechanic:</small>
+                            <h5>{{$movie->getMechanic->name}} {{$movie->getMechanic->surname}}</h5>
+                        </div>
+                        <p>
+                            {{$movie->mechanic_notices}}
+                        </p>
+                        @if($movie->photo)
+                        <div class="img">
+                            <img src="{{$movie->photo}}">
+                        </div>
                         @endif
                     </div>
                 </div>

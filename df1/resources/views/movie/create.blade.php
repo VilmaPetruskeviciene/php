@@ -11,25 +11,23 @@
                 <div class="card-body">
                     <form action="{{route('m_store')}}" method="post" enctype="multipart/form-data">
                         <div class="input-group mb-3">
-                            <span class="input-group-text">Maker</span>
-                            <input type="text" name="maker" class="form-control" value="{{old('maker')}}">
+                            <span class="input-group-text">Title</span>
+                            <input type="text" name="title" class="form-control" value="{{old('title')}}">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text">Plate</span>
-                            <input type="text" name="plate" class="form-control" value="{{old('plate')}}">
+                            <span class="input-group-text">Price</span>
+                            <input type="text" name="price" class="form-control" value="{{old('price')}}">
                         </div>
-                        
-                        
-                        <select name="mechanic_id" class="form-select mt-3">
-                            <option value="0">Choose mechanic</option>
-                            @foreach($mechanics as $mechanic)
-                            <option value="{{$mechanic->id}}" @if($mechanic->id == old('mechanic_id')) selected @endif>{{$mechanic->name}} {{$mechanic->surname}}</option>
+                        <select name="category_id" class="form-select mt-3">
+                            <option value="0">Choose category</option>
+                            @foreach($categories as $category)
+                            <option value="{{$category->id}}" @if($category->id == old('category_id')) selected @endif>{{$category->title}}</option>
                             @endforeach
                         </select>
-                        {{--<div class="input-group mt-3">
+                        {{-- <div class="input-group mt-3">
                             <span class="input-group-text">Photo</span>
                             <input type="file" name="photo" class="form-control">
-                        </div>--}}
+                        </div> --}}
                         @csrf
                         <button type="submit" class="btn btn-secondary mt-4">Create</button>
                     </form>
