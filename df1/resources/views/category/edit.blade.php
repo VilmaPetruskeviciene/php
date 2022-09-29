@@ -9,7 +9,7 @@
                     <h2>Change Category</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{{route('m_edit', $category)}}" method="post">
+                    <form action="{{route('c_edit', $category)}}" method="post">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Title</span>
                         <input type="text" name="title" class="form-control" value={{old('name', $category->title)}}>

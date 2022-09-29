@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Categories</h2>
-                    <form action="{{route('m_index')}}" method="get">
+                    <form action="{{route('c_index')}}" method="get">
                         <div class="container">
                             <div class="row">
                                 <div class="col-5">
@@ -41,7 +41,7 @@
                                             </div>
                                             <div class="col-6">
                                                 {{-- <button type="submit" class="btn btn-primary m-1">results in page</button> --}}
-                                                <a href="{{route('m_index')}}" class="btn btn-secondary m-1">Reset</a>
+                                                <a href="{{route('c_index')}}" class="btn btn-secondary m-1">Reset</a>
                                             </div>
                                         </div>
                                     </div>
@@ -61,9 +61,9 @@
                                     <span>[{{$category->getTrucks()->count()}}]</span>
                                 </div>
                                 <div class="buttons">
-                                    <a href="{{route('m_show', $category)}}" class="btn btn-info">Show</a>
-                                    <a href="{{route('m_edit', $category)}}" class="btn btn-success">Edit</a>
-                                    <form action="{{route('m_delete', $category)}}" method="post">
+                                    <a href="{{route('c_show', $category)}}" class="btn btn-info">Show</a>
+                                    <a href="{{route('c_edit', $category)}}" class="btn btn-success">Edit</a>
+                                    <form action="{{route('c_delete', $category)}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">Delete</button>
