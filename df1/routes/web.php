@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController as C;
+use App\Http\Controllers\MovieController as M;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,18 @@ Route::prefix('category')->name('c_')->group(function () {
     Route::get('/', [C::class, 'index'])->name('index');
     Route::get('/create', [C::class, 'create'])->name('create');
     Route::post('/create', [C::class, 'store'])->name('store');
-    Route::get('/show/{mechanics}', [C::class, 'show'])->name('show');
-    Route::delete('/delete/{mechanics}', [C::class, 'destroy'])->name('delete');
-    Route::get('/edit/{mechanics}', [C::class, 'edit'])->name('edit');
-    Route::put('/edit/{mechanics}', [C::class, 'update'])->name('update');
+    Route::get('/show/{category}', [C::class, 'show'])->name('show');
+    Route::delete('/delete/{category}', [C::class, 'destroy'])->name('delete');
+    Route::get('/edit/{category}', [C::class, 'edit'])->name('edit');
+    Route::put('/edit/{category}', [C::class, 'update'])->name('update');
+});
+
+Route::prefix('movie')->name('m_')->group(function () {
+    Route::get('/', [C::class, 'index'])->name('index');
+    Route::get('/create', [M::class, 'create'])->name('create');
+    Route::post('/create', [M::class, 'store'])->name('store');
+    Route::get('/show/{movie}', [M::class, 'show'])->name('show');
+    Route::delete('/delete/{movie}', [M::class, 'destroy'])->name('delete');
+    Route::get('/edit/{movie}', [M::class, 'edit'])->name('edit');
+    Route::put('/edit/{movie}', [M::class, 'update'])->name('update');
 });

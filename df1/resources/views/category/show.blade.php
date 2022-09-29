@@ -10,10 +10,9 @@
                 </div>
                 <div class="card-body">
                     <div class="category">
-                        <h5>{{$category->name}}</h5>
-                        <h5>{{$category->surname}}</h5>
+                        <h5>{{$category->title}}</h5>
                     </div>
-                    <ul class="list-group">
+                    {{--<ul class="list-group">
                         @forelse($category->getTrucks as $truck)
                         <li class="list-group-item">
                             <div class="trucks-list">
@@ -26,7 +25,7 @@
                         @empty
                         <li class="list-group-item">No trucks found</li>
                         @endforelse
-                    </ul>
+                    </ul>--}}
                 </div>
             </div>
         </div>
