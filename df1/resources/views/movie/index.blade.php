@@ -14,12 +14,12 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-6">
-                                                <select name="mech" class="form-select mt-1">
+                                                {{-- <select name="mech" class="form-select mt-1">
                                                     <option value="0">All</option>
                                                     @foreach($mechanics as $mechanic)
                                                     <option value="{{$mechanic->id}}" @if($mech==$mechanic->id) selected @endif>{{$mechanic->name}} {{$mechanic->surname}}</option>
                                                     @endforeach
-                                                </select>
+                                                </select> --}}
                                             </div>
                                             <div class="col-6">
 
@@ -32,7 +32,7 @@
                                         <div class="row">
                                             <div class="col-8">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" name="s" class="form-control" value="{{$s}}">
+                                                    {{-- <input type="text" name="s" class="form-control" value="{{$s}}"> --}}
                                                     <button type="submit" class="input-group-text">Search</button>
                                                 </div>
                                             </div>
@@ -52,14 +52,14 @@
                         <li class="list-group-item">
                             <div class="movies-list">
                                 <div class="content">
-                                    <h2><span>plate: </span>{{$movie->plate}}</h2>
-                                    <h4><span>maker: </span>{{$movie->maker}}</h4>
-                                    <h4><span>year: </span>{{$movie->make_year}}</h4>
+                                    <h2><span>Title: </span>{{$movie->title}}</h2>
+                                    <h4><span>Price: </span>{{$movie->price}}</h4>
                                     <h5>
-                                        <span>mechanic: </span>
-                                        <a href="{{route('m_show', $movie->getMechanic->id)}}">
-                                            {{$movie->getMechanic->name}} {{$movie->getMechanic->surname}}
-                                        </a></h5>
+                                        <span>Category: </span>
+                                        <a href="{{route('c_show', $movie->getCategory->id)}}">
+                                            {{$movie->getCategory->title}}
+                                        </a>
+                                    </h5>
                                     @if($movie->photo)
                                     <h5><a href="{{$movie->photo}}" target="_BLANK">Photo</a></h5>
                                     @endif
@@ -81,7 +81,7 @@
                     </ul>
                 </div>
                 <div class="me-3 mx-3">
-                    {{ $movies->links() }}
+                    {{-- {{ $movies->links() }} --}}
                 </div>
             </div>
         </div>
