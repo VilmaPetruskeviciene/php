@@ -35,7 +35,7 @@ Route::prefix('category')->name('c_')->group(function () {
 });
 
 Route::prefix('movie')->name('m_')->group(function () {
-    Route::get('/', [C::class, 'index'])->name('index');
+    Route::get('/', [M::class, 'index'])->name('index');
     Route::get('/create', [M::class, 'create'])->name('create');
     Route::post('/create', [M::class, 'store'])->name('store');
     Route::get('/show/{movie}', [M::class, 'show'])->name('show');

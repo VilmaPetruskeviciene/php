@@ -6,7 +6,7 @@
         <div class="col-5">
             <div class="card">
                 <div class="card-header">
-                    <h2>New Movie</h2>
+                    <h2>Edit Movie</h2>
                 </div>
                 <div class="card-body">
                     <form action="{{route('m_update', $movie)}}" method="post" enctype="multipart/form-data">

@@ -47,6 +47,8 @@ class MovieController extends Controller
             'category_id' => $request->category_id
         ]);
 
+
+
         if ($request->file('photo')) {
 
             $id = $movie->id;
@@ -68,9 +70,14 @@ class MovieController extends Controller
                     // TIME cia dadaryt
                 ];
             }
+
             // dump($urls);
+
             MovieImage::insert($urls);
+            
+
         }
+
         return redirect()->route('m_index');
     }
 
@@ -110,7 +117,7 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        Movie::update([
+        $movie->update([
             'title' => $request->title,
             'price' => $request->price,
             'category_id' => $request->category_id
