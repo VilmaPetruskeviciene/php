@@ -27,7 +27,7 @@ class Movie extends Model
         return $this->getPhotos()->orderBy('id', 'desc')->first()->url;
     }
 
-    public function addImages(?array $photos) : void
+    public function addImages(?array $photos) : self
     {
         if ($photos) {
             $movieImage = [];
@@ -46,5 +46,21 @@ class Movie extends Model
             }
             MovieImage::insert($movieImage);
         }
+        return $this;
+    }
+
+    public function removeImages(?array $photos) : self
+    {
+        if ($photos) {
+            $toDelete = MovieImage::whereIn('id', $photos)->get();
+            foreach ($toDelete as $photo) {
+                $file = public_path().'/images/'.pathinfo($photo->url, PATHINFO_FILENAME).'.'.pathinfo($photo->url, PATHINFO_EXTENSION);
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+            }
+            MovieImage::destroy($photos);
+        }
+        return $this;
     }
 }
