@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
-use App\Models\MovieImage;
 use App\Models\Category;
 use Illuminate\Http\Request;
+
 
 class MovieController extends Controller
 {
@@ -41,42 +41,11 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        $movie = Movie::create([
+        Movie::create([
             'title' => $request->title,
             'price' => $request->price,
             'category_id' => $request->category_id
-        ]);
-
-
-
-        if ($request->file('photo')) {
-
-            $id = $movie->id;
-            $urls = [];
-
-            foreach($request->file('photo') as $photo) {
-                $ext = $photo->getClientOriginalExtension();
-                $name = pathinfo($photo->getClientOriginalName(), PATHINFO_FILENAME);
-                $file = $name. '-' . rand(100000, 999999). '.' . $ext;
-            
-                // $Image = Image::make($photo)->pixelate(12);
-                // $Image->save(public_path().'/images/'.$file);
-
-                $photo->move(public_path().'/images', $file);
-
-                $urls[] = [
-                    'url' => asset('/images') . '/' . $file, 
-                    'movie_id' => $id
-                    // TIME cia dadaryt
-                ];
-            }
-
-            // dump($urls);
-
-            MovieImage::insert($urls);
-            
-
-        }
+        ])->addImages($request->file('photo'));
 
         return redirect()->route('m_index');
     }

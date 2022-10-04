@@ -61,8 +61,8 @@
                                             {{$movie->getCategory->title}}
                                         </a>
                                     </h5>
-                                    @if($movie->photo)
-                                    <h5><a href="{{$movie->photo}}" target="_BLANK">Photo</a></h5>
+                                    @if($movie->getPhotos()->count())
+                                    <h5><a href="{{$movie->getPhotos()->first()->url}}" target="_BLANK">Photos: </a> {{$movie->getPhotos()->count()}}</h5>
                                     @endif
                                 </div>
                                 <div class="buttons">
