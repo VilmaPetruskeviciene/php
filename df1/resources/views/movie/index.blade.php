@@ -31,16 +31,15 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-8">
-                                                {{--<div class="input-group mb-3">--}}
+                                                <div class="input-group mb-3">
                                                     {{-- <input type="text" name="s" class="form-control" value="{{$s}}"> --}}
-                                                    {{--<button type="submit" class="input-group-text">Search</button>--}}
-                                                {{--</div>
+                                                    <button type="submit" class="input-group-text">Search</button>
+                                                </div>
                                             </div>
-                                            <div class="col-2">--}}
-                                                {{--<a href="{{route('m_index')}}" class="btn btn-secondary">Reset</a>--}}
-                                            {{--</div>
-                                        </div>--}}
-                                        
+                                            <div class="col-2">
+                                                <a href="{{route('m_index')}}" class="btn btn-secondary">Reset</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +61,7 @@
                                         </a>
                                     </h5>
                                     @if($movie->getPhotos()->count())
-                                    <h5><a href="{{$movie->getPhotos()->first()->url}}" target="_BLANK">Photos: </a> {{$movie->getPhotos()->count()}}</h5>
+                                    <h5><a href="{{$movie->lastImageUrl()}}" target="_BLANK">Photos: {{$movie->getPhotos()->count()}}</a></h5>
                                     @endif
                                 </div>
                                 <div class="buttons">
