@@ -3,26 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Movie;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+
+    public function homeList()
     {
-        $this->middleware('auth');
+        return view('home.index', [
+            'movies' => Movie::orderBy('title')->get(),
+        ]);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function rate(Request $request, Movie $movie)
     {
-        return view('home');
+        $movie->rating_sum = $movie->rating_sum + $request->rate;
+        $movie->rating_count ++;
+        $movie->rating = $movie->rating_sum / $movie->rating_count;
+        $movie->save();
+        return redirect()->back();
     }
+
+
+
+
 }

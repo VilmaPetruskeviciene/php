@@ -30,15 +30,15 @@
                                 <div class="col-7">
                                     <div class="container">
                                         <div class="row">
-                                            {{-- <div class="col-8">
+                                            <div class="col-8">
                                                 <div class="input-group mb-3">
-                                                    <input type="text" name="s" class="form-control" value="{{$s}}">
+                                                    {{-- <input type="text" name="s" class="form-control" value="{{$s}}"> --}}
                                                     <button type="submit" class="input-group-text">Search</button>
                                                 </div>
-                                            </div> --}}
-                                            {{-- <div class="col-2">
+                                            </div>
+                                            <div class="col-2">
                                                 <a href="{{route('m_index')}}" class="btn btn-secondary">Reset</a>
-                                            </div> --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -63,17 +63,19 @@
                                     @if($movie->getPhotos()->count())
                                     <h5><a href="{{$movie->lastImageUrl()}}" target="_BLANK">Photos: {{$movie->getPhotos()->count()}}</a></h5>
                                     @endif
+                                    <h4><span>Rating: </span>{{$movie->rating ?? 'no rating'}}</h4>
                                 </div>
                                 <div class="buttons">
-                                    <a href="{{route('m_show', $movie)}}" class="btn btn-info">Show</a>
-                                    @if(Auth::user()->role >= 10)
-                                    <a href="{{route('m_edit', $movie)}}" class="btn btn-success">Edit</a>
-                                    <form action="{{route('m_delete', $movie)}}" method="post">
+                                    <form action="{{route('rate', $movie)}}" method="post">
+                                        <select name="rate">
+                                            @foreach(range(1, 10) as $value)
+                                                <option value="{{$value}}">{{$value}}</option>
+                                            @endforeach
+                                        </select>
                                         @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        @method('put')
+                                        <button type="submit" class="btn btn-info">Rate</button>
                                     </form>
-                                    @endif
                                 </div>
                             </div>
                         </li>
