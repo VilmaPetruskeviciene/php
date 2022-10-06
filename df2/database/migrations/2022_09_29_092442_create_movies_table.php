@@ -17,11 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->decimal('price', 5, 2);
-            $table->string('rating', 4, 2)->nullable();
+            $table->decimal('rating', 4, 2)->nullable();
             $table->unsignedBigInteger('rating_sum')->default(0);
             $table->unsignedBigInteger('rating_count')->default(0);
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
+
             $table->timestamps();
         });
     }
