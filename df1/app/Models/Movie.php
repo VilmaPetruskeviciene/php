@@ -12,6 +12,15 @@ class Movie extends Model
 
     protected $fillable = ['title', 'price', 'category_id'];
 
+    const SORT_SELECT = [
+        ['rate_asc', 'Rating 1 - 9'],
+        ['rate_desc', 'Rating 9 - 1'],
+        ['title_asc', 'Title A - Z'],
+        ['title_desc', 'Title Z - A'],
+        ['price_asc', 'Price 1 - 9'],
+        ['price_desc', 'Price 9 - 1'],
+    ];
+
     public function getCategory()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
@@ -54,7 +63,7 @@ class Movie extends Model
         if ($photos) {
             $toDelete = MovieImage::whereIn('id', $photos)->get();
             foreach ($toDelete as $photo) {
-                $file = public_path().'/images/'.pathinfo($photo->url, PATHINFO_FILENAME).'.'.pathinfo($photo->url, PATHINFO_EXTENSION);
+                $file = public_path().'/images/' .pathinfo($photo->url, PATHINFO_FILENAME).'.'.pathinfo($photo->url, PATHINFO_EXTENSION);
                 if (file_exists($file)) {
                     unlink($file);
                 }
@@ -63,4 +72,5 @@ class Movie extends Model
         }
         return $this;
     }
+    
 }
