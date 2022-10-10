@@ -16,9 +16,7 @@
                         <div class="line"><small>Price:</small>
                             <h5>{{$movie->price}}</h5>
                         </div>
-                        <div class="line"><small>Category:</small>
-                            <h5>{{$movie->getCategory->title}}</h5>
-                        </div>
+                        
                         @forelse($movie->getPhotos as $photo)
                             <div class="img">
                                 <img src="{{$photo->url}}">

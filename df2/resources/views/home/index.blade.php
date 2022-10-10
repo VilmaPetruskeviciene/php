@@ -81,13 +81,14 @@
                         </div>
                     </div>
                     <div class="comments">
+
                         <ul class="list-group m-3">
                             @forelse($movie->getComments as $comment)
                             <li class="list-group-item">
-                                <p>{{$comment->post}}</p>
+                                <div>{!!$comment->post!!}</div>
                             </li>
                             @empty
-                            <li class="list-group-item">No comment</li>
+                            <li class="list-group-item">No comment.</li>
                             @endforelse
                         </ul>
 
@@ -107,10 +108,8 @@
             </ul>
         </div>
         <div class="me-3 mx-3">
-            {{-- {{ $movies->links() }} --}}
+            {{ $movies->links() }}
         </div>
     </div>
-</div>
-</div>
 </div>
 @endsection
