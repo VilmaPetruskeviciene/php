@@ -21,10 +21,7 @@ class Movie extends Model
         ['price_desc', 'Price 9 - 1'],
     ];
 
-    public function getCategory()
-    {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
-    }
+    
 
     public function getPhotos()
     {
@@ -71,6 +68,11 @@ class Movie extends Model
             MovieImage::destroy($photos);
         }
         return $this;
+    }
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::class, 'movie_id', 'id');
     }
     
 }

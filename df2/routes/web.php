@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController as C;
+use App\Http\Controllers\CommentController as C;
 use App\Http\Controllers\MovieController as M;
 use App\Http\Controllers\HomeController as H;
 
@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::get('/', [H::class, 'homeList'])->name('home')->middleware('gate:home');
 Route::put('/rate/{movie}', [H::class, 'rate'])->name('rate')->middleware('gate:user');
+Route::post('/comment/{movie}', [H::class, 'addComment'])->name('comment')->middleware('gate:user');
 
 Route::prefix('movie')->name('m_')->group(function () {
     Route::get('/', [M::class, 'index'])->name('index')->middleware('gate:user');
@@ -31,4 +32,9 @@ Route::prefix('movie')->name('m_')->group(function () {
     Route::delete('/delete/{movie}', [M::class, 'destroy'])->name('delete')->middleware('gate:admin');
     Route::get('/edit/{movie}', [M::class, 'edit'])->name('edit')->middleware('gate:admin');
     Route::put('/edit/{movie}', [M::class, 'update'])->name('update')->middleware('gate:admin');
+});
+
+Route::prefix('comment')->name('c_')->group(function () {
+    Route::get('/', [C::class, 'index'])->name('index')->middleware('gate:user');
+    Route::delete('/delete/{comment}', [C::class, 'destroy'])->name('delete')->middleware('gate:admin');
 });
