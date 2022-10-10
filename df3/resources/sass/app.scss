@@ -32,9 +32,6 @@
             align-items: center;
             margin: 0;
         }
-        button {
-            transform: rotate(1deg);
-        }
     }
 }
 
@@ -91,7 +88,7 @@
                 color: olivedrab;
                 transition: all 0.3s;
                 &:hover {
-                    color: cadetblue
+                    color: cadetblue;
                 }
             }
         }
@@ -103,9 +100,6 @@
         a {
             margin: 5px 10px;
             display: block;
-        }
-        button {
-            transform: rotate(1deg);
         }
     }
 }
@@ -163,7 +157,7 @@
                 color: olivedrab;
                 transition: all 0.3s;
                 &:hover {
-                    color: cadetblue
+                    color: cadetblue;
                 }
             }
         }
@@ -181,9 +175,6 @@
             display: flex;
             align-items: center;
             margin: 0;
-        }
-        button {
-            transform: rotate(1deg);
         }
     }
 }
