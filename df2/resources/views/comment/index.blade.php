@@ -49,7 +49,7 @@
                     </ul>
                 </div>
                 <div class="me-3 mx-3">
-                    {{-- {{ $categories->links() }} --}}
+                    {{ $movies->links() }}
                 </div>
             </div>
         </div>
