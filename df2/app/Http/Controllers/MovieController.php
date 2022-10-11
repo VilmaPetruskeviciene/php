@@ -57,7 +57,7 @@ class MovieController extends Controller
             'price' => $request->price
         ])->addImages($request->file('photo'));
 
-        return redirect()->route('m_index');
+        return redirect()->route('m_index')->with('ok', 'All good');
     }
 
     /**

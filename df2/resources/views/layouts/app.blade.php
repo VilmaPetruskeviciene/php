@@ -106,7 +106,6 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-6 m-4">
-
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -118,10 +117,21 @@
                 </div>
             </div>
             @endif
-    </div>
 
-    @yield('content')
-    </main>
+            @if(Session::has('ok'))
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-6 m-4">
+                        <div class="alert alert-success">
+                            {{ Session::get('ok') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+            @yield('content')
+        </main>
     </div>
 </body>
 </html>
