@@ -39,6 +39,19 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+            'price' => 'required|numeric|min:1|max:100',
+            'photo.*' => 'sometimes|required|mimes:jpg|max:2000'
+        ],
+        [
+            'title.required' => 'Nera title',
+            'title.min' => 'title per trumpas',
+            'title.max' => 'title per ilgas',
+            'price.required' => 'Nera kainos',
+        ]
+    );
+
         Movie::create([
             'title' => $request->title,
             'price' => $request->price
@@ -82,6 +95,12 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:50',
+            'price' => 'required|numeric|min:1|max:100',
+            'photo.*' => 'sometimes|required|mimes:jpg|max:2000'
+        ]);
+
         $movie->update([
             'title' => $request->title,
             'price' => $request->price

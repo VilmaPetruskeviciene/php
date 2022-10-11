@@ -49,7 +49,7 @@
                         </li>
                         @endif
                         @else
-                        
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Movies
@@ -101,8 +101,27 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
-        </main>
+
+            @if ($errors->any())
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-6 m-4">
+
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+    </div>
+
+    @yield('content')
+    </main>
     </div>
 </body>
 </html>
