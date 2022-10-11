@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('rating', 4, 2)->nullable();
             $table->unsignedBigInteger('rating_sum')->default(0);
             $table->unsignedBigInteger('rating_count')->default(0);
-
+            $table->text('votes')->nullable();
             $table->timestamps();
         });
     }
