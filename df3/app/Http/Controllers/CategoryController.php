@@ -92,6 +92,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if ($category->movies()->count()) {
+            return 'Negalima.';
+        }
         $category->delete();
         return redirect()->route('c_index');
     }
