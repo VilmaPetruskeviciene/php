@@ -44,7 +44,7 @@ class MovieController extends Controller
             'title' => $request->title,
             'price' => $request->price,
             'category_id' => $request->category_id,
-        ]);
+        ])->addImages($request->file('photo'));
         return redirect()->route('m_index');
     }
 
