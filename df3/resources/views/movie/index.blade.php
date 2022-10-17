@@ -14,12 +14,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-6">
-                                                {{--<select name="mech" class="form-select mt-1">
-                                                    <option value="0">All</option>
-                                                    @foreach($mechanics as $mechanic)
-                                                        <option value="{{$mechanic->id}}" @if($mech == $mechanic->id) selected @endif>{{$mechanic->name}} {{$mechanic->surname}}</option>
-                                                    @endforeach
-                                                </select>--}}
+                                                
                                             </div>
                                             <div class="col-6">
 
@@ -60,8 +55,9 @@
                                             {{$movie->getCategory->title}}
                                         </a>
                                     </h5>
-                                    @if($movie->photo)
-                                    <h5><a href="{{$movie->photo}}" target="_BLANK">Photo</a></h5>
+                                    @if($movie->getPhotos()->count())
+                                    {{--<h5><a href="{{$movie->getPhotos()->orderBy('id', 'desc')->first()->url}}" target="_BLANK">Photos: {{$movie->getPhotos()->count()}}</a></h5>--}}
+                                    <img class="index-img" src="{{$movie->getPhotos()->first()->url}}">
                                     @endif
                                 </div>
                                 <div class="buttons">

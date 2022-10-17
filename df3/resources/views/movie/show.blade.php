@@ -13,11 +13,13 @@
                         <div class="line"><small>Title: </small><h5>{{$movie->title}}</h5></div>
                         <div class="line"><small>Price: </small><h5>{{$movie->price}}</h5></div>
                         <div class="line"><small>Category: </small><h5>{{$movie->getCategory->title}}</h5></div>
-                        @if($movie->photo)
+                        @forelse($movie->getPhotos as $photo)
                             <div class="img">
-                                <img src="{{$movie->photo}}">
+                                <img class="show-img" src="{{$photo->url}}">
                             </div>
-                        @endif
+                        @empty
+                            <h2>No photos yet.</h2>
+                        @endforelse
                     </div>
                 </div>
             </div>

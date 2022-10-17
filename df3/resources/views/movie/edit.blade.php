@@ -18,21 +18,22 @@
                             <span class="input-group-text">Price</span>
                             <input type="text" name="price" class="form-control" value="{{old('price', $movie->price)}}">
                         </div>
-                        {{--@if($movie->photo)
-                        <div class="img-small mt-3">
-                            <img src="{{$movie->photo}}">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" id="del-photo" name="delete_photo">
-                                <label class="form-check-label" for="del-photo">
-                                    Delete Photo
-                                </label>
-                            </div>
-                        </div>
-                        @endif
-                        <div class="input-group mt-3">
+                        <div data-clone class="input-group mt-3">
                             <span class="input-group-text">Photo</span>
-                            <input type="file" name="photo" class="form-control">
-                        </div>--}}
+                            <input type="file" name="photo[]" multiple class="form-control">
+                        </div>
+                        <div class="img-small-ch mt-3">
+                            @forelse($movie->getPhotos as $photo)
+                            <div class="img">
+                                <label for="{{$photo->id}}-del-photo">x</label>
+                                <input type="checkbox" value="{{$photo->id}}" id="{{$photo->id}}-del-photo" name="delete_photo[]">
+                                <img src="{{$photo->url}}">
+                            </div>
+                            @empty
+                            <h2>No photos yet.</h2>
+                            @endforelse
+                        </div>
+                        
                         <select name="category_id" class="form-select mt-3">
                             <option value="0">Choose category</option>
                             @foreach($categories as $category)

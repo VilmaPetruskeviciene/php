@@ -16,6 +16,11 @@ class Movie extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    public function getPhotos()
+    {
+        return $this->hasMany(MovieImage::class, 'movie_id', 'id');
+    }
+
     public function addImages(?array $photos) : self
     {
         if ($photos) {
@@ -34,6 +39,21 @@ class Movie extends Model
                 ];
             }
             MovieImage::insert($movieImage);
+        }
+        return $this;
+    }
+
+    public function removeImages(?array $photos) : self
+    {
+        if ($photos) {
+            $toDelete = MovieImage::whereIn('id', $photos)->get();
+            foreach ($toDelete as $photo) {
+                $file = public_path().'/images/' .pathinfo($photo->url, PATHINFO_FILENAME).'.'.pathinfo($photo->url, PATHINFO_EXTENSION);
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+            }
+            MovieImage::destroy($photos);
         }
         return $this;
     }
