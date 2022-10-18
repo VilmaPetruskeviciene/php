@@ -104,6 +104,10 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
+        if ($movie->getPhotos()->count()) {
+            $delIds = $movie->getPhotos()->pluck('id')->all();
+            $movie->removeImages($delIds);
+        }
         $movie->delete();
         return redirect()->route('m_index');
     }
