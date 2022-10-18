@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController as C;
 use App\Http\Controllers\MovieController as M;
+use App\Http\Controllers\HomeController as H;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,32 +16,29 @@ use App\Http\Controllers\MovieController as M;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [H::class, 'homeList'])->name('home')->middleware('gate:home');
+Route::put('/rate/{movie}', [H::class, 'rate'])->name('rate')->middleware('gate:user');
 
 
 Route::prefix('category')->name('c_')->group(function () {
-    Route::get('/', [C::class, 'index'])->name('index');
-    Route::get('/create', [C::class, 'create'])->name('create');
-    Route::post('/create', [C::class, 'store'])->name('store');
-    Route::get('/show/{category}', [C::class, 'show'])->name('show');
-    Route::delete('/delete/{category}', [C::class, 'destroy'])->name('delete');
-    Route::get('/edit/{category}', [C::class, 'edit'])->name('edit');
-    Route::put('/edit/{category}', [C::class, 'update'])->name('update');
-    Route::delete('/delete-movies/{category}', [C::class, 'destroyAll'])->name('delete_movies');
+    Route::get('/', [C::class, 'index'])->name('index')->middleware('gate:user');
+    Route::get('/create', [C::class, 'create'])->name('create')->middleware('gate:admin');
+    Route::post('/create', [C::class, 'store'])->name('store')->middleware('gate:admin');
+    Route::get('/show/{category}', [C::class, 'show'])->name('show')->middleware('gate:user');
+    Route::delete('/delete/{category}', [C::class, 'destroy'])->name('delete')->middleware('gate:admin');
+    Route::get('/edit/{category}', [C::class, 'edit'])->name('edit')->middleware('gate:admin');
+    Route::put('/edit/{category}', [C::class, 'update'])->name('update')->middleware('gate:admin');
+    Route::delete('/delete-movies/{category}', [C::class, 'destroyAll'])->name('delete_movies')->middleware('gate:admin');
 });
 
 Route::prefix('movie')->name('m_')->group(function () {
-    Route::get('/', [M::class, 'index'])->name('index');
-    Route::get('/create', [M::class, 'create'])->name('create');
-    Route::post('/create', [M::class, 'store'])->name('store');
-    Route::get('/show/{movie}', [M::class, 'show'])->name('show');
-    Route::delete('/delete/{movie}', [M::class, 'destroy'])->name('delete');
-    Route::get('/edit/{movie}', [M::class, 'edit'])->name('edit');
-    Route::put('/edit/{movie}', [M::class, 'update'])->name('update');
+    Route::get('/', [M::class, 'index'])->name('index')->middleware('gate:user');
+    Route::get('/create', [M::class, 'create'])->name('create')->middleware('gate:admin');
+    Route::post('/create', [M::class, 'store'])->name('store')->middleware('gate:admin');
+    Route::get('/show/{movie}', [M::class, 'show'])->name('show')->middleware('gate:user');
+    Route::delete('/delete/{movie}', [M::class, 'destroy'])->name('delete')->middleware('gate:admin');
+    Route::get('/edit/{movie}', [M::class, 'edit'])->name('edit')->middleware('gate:admin');
+    Route::put('/edit/{movie}', [M::class, 'update'])->name('update')->middleware('gate:admin');
 });
