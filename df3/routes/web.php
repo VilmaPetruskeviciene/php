@@ -19,7 +19,7 @@ use App\Http\Controllers\HomeController as H;
 Auth::routes();
 
 Route::get('/', [H::class, 'homeList'])->name('home')->middleware('gate:home');
-//Route::put('/rate/{movie}', [H::class, 'rate'])->name('rate')->middleware('gate:user');
+Route::put('/rate/{movie}', [H::class, 'rate'])->name('rate')->middleware('gate:user');
 
 
 Route::prefix('category')->name('c_')->group(function () {
