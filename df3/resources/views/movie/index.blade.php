@@ -7,39 +7,6 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Movie</h2>
-                    <form action="{{route('m_index')}}" method="get">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                
-                                            </div>
-                                            <div class="col-6">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-9">
-                                            <div class="input-group mb-3">
-                                                {{--<input type="text" name="s" class="form-control" value="{{$s}}">--}}
-                                                <button type="submit" class="input-group-text">Search</button>
-                                            </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <a href="{{route('m_index')}}" class="btn btn-secondary m-1">Reset</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
