@@ -51,7 +51,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-2">
-                                                <a href="{{route('home')}}" class="btn btn-secondary m-1">Reset</a>
+                                                <a href="{{route('home')}}" class="btn btn-secondary">Reset</a>
                                             </div>
                                         </div>
                                     </div>
