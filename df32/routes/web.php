@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MovieController as M;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('movie')->name('m_')->group(function () {
+    Route::get('/', [M::class, 'index'])->name('index');
+    Route::get('/create', [M::class, 'create'])->name('create');
+    Route::post('/create', [M::class, 'store'])->name('store');
+    Route::get('/show/{movie}', [M::class, 'show'])->name('show');
+    Route::delete('/delete/{movie}', [M::class, 'destroy'])->name('delete');
+    Route::get('/edit/{movie}', [M::class, 'edit'])->name('edit');
+    Route::put('/edit/{movie}', [M::class, 'update'])->name('update');
+});
