@@ -3,26 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Movie;
+use App\Models\Comment;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function homeList(Request $request)
     {
-        $this->middleware('auth');
+        return view('home.index', [
+            'movies' => Movie::orderBy('updated_at', 'desc')->get(),    
+        ]);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function addComment(Request $request, Movie $movie)
     {
-        return view('home');
+        Comment::create([
+            'movie_id' => $movie->id,
+            'post' => $request->post,
+        ]);
+        return redirect()->back();
     }
 }
