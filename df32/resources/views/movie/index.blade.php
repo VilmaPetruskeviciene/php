@@ -16,6 +16,9 @@
                                 <div class="content">
                                     <h2><span>Title: </span>{{$movie->title}}</h2>
                                     <h4><span>Price: </span>{{$movie->price}}</h4>
+                                    @if($movie->getPhotos()->count())
+                                    <img class="index-img" src="{{$movie->getPhotos()->first()->url}}">
+                                    @endif
                                 </div>
                                 <div class="buttons">
                                     <a href="{{route('m_show', $movie)}}" class="btn btn-info">Show</a>

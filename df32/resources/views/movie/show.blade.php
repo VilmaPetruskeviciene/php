@@ -16,6 +16,13 @@
                         <div class="line"><small>Price:</small>
                             <h5>{{$movie->price}}</h5>
                         </div>
+                        @forelse($movie->getPhotos as $photo)
+                            <div class="img">
+                                <img class="show-img" src="{{$photo->url}}">
+                            </div>
+                        @empty
+                            <h2>No photos yet.</h2>
+                        @endforelse
                     </div>
                 </div>
             </div>

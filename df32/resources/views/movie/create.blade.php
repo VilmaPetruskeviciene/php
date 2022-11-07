@@ -18,6 +18,10 @@
                             <span class="input-group-text">Price</span>
                             <input type="text" name="price" class="form-control" value="{{old('price')}}">
                         </div>
+                        <div data-clone class="input-group mt-3">
+                            <span class="input-group-text">Photo</span>
+                            <input type="file" name="photo[]" multiple class="form-control">
+                        </div>
                         @csrf
                         <button type="submit" class="btn btn-secondary mt-4">Create</button>
                     </form>

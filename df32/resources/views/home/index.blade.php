@@ -19,6 +19,15 @@
                                 </div>
                             </div>
                             <div class="comments">
+                                <ul class="list-group m-3">
+                                    @forelse($movie->getComments as $comment)
+                                    <li class="list-group-item">
+                                        <div>{!!$comment->post!!}</div>
+                                    </li>
+                                    @empty
+                                    <li class="list-group-item">No comment.</li>
+                                    @endforelse
+                                </ul>
                                 <form action="{{route('comment', $movie)}}" method="post">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">Comment</span>
