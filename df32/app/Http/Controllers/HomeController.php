@@ -11,8 +11,17 @@ class HomeController extends Controller
     public function homeList(Request $request)
     {
         return view('home.index', [
-            'movies' => Movie::orderBy('updated_at', 'desc')->get(),    
+            'movies' => Movie::orderBy('title')->get(),    
         ]);
+    }
+
+    public function rate(Request $request, Movie $movie)
+    {
+        $movie->rating_sum = $movie->rating_sum + $request->rate;
+        $movie->rating_count ++;
+        $movie->rating = $movie->rating_sum / $movie->rating_count;
+        $movie->save();
+        return redirect()->back();
     }
 
     public function addComment(Request $request, Movie $movie)

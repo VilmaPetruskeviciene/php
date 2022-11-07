@@ -16,6 +16,22 @@
                                 <div class="content">
                                     <h2><span>Title: </span>{{$movie->title}}</h2>
                                     <h4><span>Price: </span>{{$movie->price}}</h4>
+                                    @if($movie->getPhotos()->count())
+                                    <img class="index-img" src="{{$movie->getPhotos()->first()->url}}">
+                                    @endif
+                                    <h4><span>Rating: </span>{{$movie->rating ?? 'no rating'}}</h4>
+                                </div>
+                                <div class="buttons">
+                                    <form action="{{route('rate', $movie)}}" method="post">
+                                        <select name="rate">
+                                            @foreach(range(1, 10) as $value)
+                                            <option value="{{$value}}">{{$value}}</option>
+                                            @endforeach
+                                        </select>
+                                        @csrf
+                                        @method('put')
+                                        <button type="submit" class="btn btn-info">Rate</button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="comments">
