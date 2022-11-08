@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
-use App\Http\Requests\StoreCommentRequest;
-use App\Http\Requests\UpdateCommentRequest;
+use App\Models\Movie;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -15,7 +15,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        return view('comment.index', [
+            'movies' => Movie::orderBy('updated_at', 'desc')->get(),
+           ]);
     }
 
     /**
@@ -31,10 +33,10 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCommentRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCommentRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -64,11 +66,11 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCommentRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCommentRequest $request, Comment $comment)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -81,6 +83,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+        return redirect()->back();
     }
 }
