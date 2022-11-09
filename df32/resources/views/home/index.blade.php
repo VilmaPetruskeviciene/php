@@ -105,11 +105,9 @@
                 @endforelse
             </ul>
         </div>
-        <div class="me-3 mx-3">
-            {{-- {{ $movies->links() }} --}}
+        <div class="me-3 mx-3 mt-3">
+            {{ $movies->links() }}
         </div>
     </div>
-</div>
-</div>
 </div>
 @endsection

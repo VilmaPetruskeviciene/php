@@ -48,7 +48,7 @@ class HomeController extends Controller
         }
 
         return view('home.index', [
-            'movies' => $movies->get(),
+            'movies' => $movies->paginate(5)->withQueryString(),
             'sort' => $request->sort ?? '0',
             'sortSelect' => Movie::SORT_SELECT,
             's' => $request->s ?? '',  
