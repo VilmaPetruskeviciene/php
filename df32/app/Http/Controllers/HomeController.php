@@ -61,15 +61,19 @@ class HomeController extends Controller
         $movie->rating_count ++;
         $movie->rating = $movie->rating_sum / $movie->rating_count;
         $movie->save();
-        return redirect()->back();
+        return redirect()->back()->with('ok', 'Thank you for your rating!');
     }
 
     public function addComment(Request $request, Movie $movie)
     {
+        $request->validate([
+            'post' => 'required|min:10|max:200'
+        ]);
+
         Comment::create([
             'movie_id' => $movie->id,
             'post' => $request->post,
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('ok', 'Thank you for your comment!');
     }
 }
