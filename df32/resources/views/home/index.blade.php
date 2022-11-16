@@ -1,7 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container --content">
+<div class="container --content justify-content-center col-12 col-sm-12 col-md-9 col-lg-9 col-xl-7 col-xxl-7">
     <div class="row justify-content-center">
         <div class="col-12 p-0 mb-2">
             <div class="card">
@@ -9,7 +8,7 @@
                     <h2>Movie</h2>
                     <div class="container">
                         <div class="row">
-                            <div class="col-7">
+                            <div class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-7 col-xxl-7">
                                 <form action="{{route('home')}}" method="get">
                                     <div class="container">
                                         <div class="row">
@@ -32,7 +31,7 @@
                     </div>
                     <div class="container mt-2">
                         <div class="row">
-                            <div class="col-7">
+                            <div class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-7 col-xxl-7">
                                 <form action="{{route('home')}}" method="get">
                                     <div class="container">
                                         <div class="row">
@@ -60,11 +59,11 @@
                 <li class="list-group-item">
                     <div class="movies-list">
                         <div class="content">
-                            <h2><span>Title: </span>{{$movie->title}}</h2>
-                            <h4><span>Price: </span>{{$movie->price}}</h4>
                             @if($movie->getPhotos()->count())
-                            <img class="index-img" src="{{$movie->getPhotos()->first()->url}}">
+                            <img class="index-img mb-2" src="{{$movie->getPhotos()->first()->url}}">
                             @endif
+                            <h2><span>Title: </span>{{$movie->title}}</h2>
+                            <h4><span>Price: </span>{{$movie->price}}</h4>    
                             <h4><span>Rating: </span>{{$movie->rating ?? 'no rating'}}</h4>
                         </div>
                         <div class="buttons">
