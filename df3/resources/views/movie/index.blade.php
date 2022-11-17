@@ -46,7 +46,7 @@
                     </ul>
                 </div>
                 <div class="me-3 mx-3">
-                    {{--{{ $movie->links() }}--}}
+                    {{ $movies->links() }}
                 </div>
             </div>
         </div>

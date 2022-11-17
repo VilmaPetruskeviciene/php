@@ -51,7 +51,7 @@ class HomeController extends Controller
         }
 
         return view('home.index', [
-            'movies' => $movies->get(),
+            'movies' => $movies->paginate(5)->withQueryString(),
             'categories' => Category::orderBy('title')->get(),
             'cat' => $request->cat ?? '0',
             'sort' => $request->sort ?? '0',

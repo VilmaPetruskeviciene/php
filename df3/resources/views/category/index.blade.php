@@ -37,7 +37,7 @@
                     </ul>
                 </div>
                 <div class="me-3 mx-3">
-                    {{-- {{ $categories->links() }} --}}
+                    {{ $categories->links() }}
                 </div>
             </div>
         </div>
