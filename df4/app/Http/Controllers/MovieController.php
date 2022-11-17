@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
-use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 
@@ -28,7 +28,9 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view('movie.create');
+        return view('movie.create', [
+            'tags' => Tag::orderBy('title')->get(),
+        ]);
     }
 
     /**
@@ -43,19 +45,13 @@ class MovieController extends Controller
             'title' => 'required|min:3|max:50',
             'price' => 'required|numeric|min:1|max:100',
             'photo.*' => 'sometimes|required|mimes:jpg|max:2000'
-        ],
-        [
-            'title.required' => 'Nera title',
-            'title.min' => 'title per trumpas',
-            'title.max' => 'title per ilgas',
-            'price.required' => 'Nera kainos',
-        ]
-    );
+        ]);
 
         Movie::create([
             'title' => $request->title,
             'price' => $request->price
-        ])->addImages($request->file('photo'));
+        ])->addImages($request->file('photo'))
+        ->addTags($request->tag);
 
         return redirect()->route('m_index')->with('ok', 'All good');
     }

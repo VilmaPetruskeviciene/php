@@ -6,14 +6,14 @@
         <div class="col-9">
             <div class="card">
                 <div class="card-header">
-                    <h2>Category</h2>
+                    <h2>Tag</h2>
                 </div>
                 <div class="card-body">
                     <div class="category">
-                        <h5>{{$category->title}}</h5>
+                        <h5>{{$tag->title}}</h5>
                     </div>
                     <ul class="list-group">
-                        @forelse($category->movies as $movie)
+                        @forelse($tag->movies as $movie)
                         <li class="list-group-item">
                             <div class="movies-list">
                                 <div class="content">
@@ -28,7 +28,7 @@
                     </ul>
                     @if(Auth::user()->role >= 10)
                     <div class="buttons mt-2">
-                        <form action="{{route('c_delete_movies', $category)}}" method="post">
+                        <form action="{{route('t_delete_movies', $tag)}}" method="post">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger">Delete all movies</button>

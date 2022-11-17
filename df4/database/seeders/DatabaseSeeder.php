@@ -53,6 +53,21 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        foreach([
+            'Nice',
+            'Very Nice',
+            '18+',
+            'Very Blue',
+            'Animalistic',
+            'Perfect'
+        ] as $tag) {
+            DB::table('tags')->insert([
+                'title' => $tag,
+                'created_at' => $time->addSeconds(1),
+                'updated_at' => $time
+            ]);
+        }
+
         foreach(range(1, 22) as $_) {
             DB::table('comments')->insert([
                 'post' => $faker->paragraph(rand(1, 10)),
