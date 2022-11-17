@@ -78,7 +78,9 @@ class MovieController extends Controller
     public function edit(Movie $movie)
     {
         return view('movie.edit', [
-            'movie' => $movie
+            'movie' => $movie,
+            'tags' => Tag::orderBy('title')->get(),
+            'checkedTags' => $movie->getPivot->pluck('tag_id')->all()
         ]);
     }
 
@@ -103,7 +105,9 @@ class MovieController extends Controller
         ]);
         $movie
         ->removeImages($request->delete_photo)
-        ->addImages($request->file('photo'));
+        ->addImages($request->file('photo'))
+        ->removeTags($request->tag)
+        ->addTags($request->tag);
 
         return redirect()->route('m_index')->with('ok', 'All good');
     }

@@ -10,7 +10,7 @@ class Movie extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'price', 'category_id'];
+    protected $fillable = ['title', 'price'];
 
     const SORT_SELECT = [
         ['rate_asc', 'Rating 1 - 9'],
@@ -21,11 +21,19 @@ class Movie extends Model
         ['price_desc', 'Price 9 - 1'],
     ];
 
-    
-
     public function getPhotos()
     {
         return $this->hasMany(MovieImage::class, 'movie_id', 'id');
+    }
+
+    public function getPivot()
+    {
+        return $this->hasMany(MovieTag::class, 'movie_id', 'id');
+    }
+
+    public function getTags()
+    {
+        return $this->belongsToMany(Tag::class, 'movie_tags', 'movie_id', 'tag_id');
     }
 
     public function lastImageUrl()
@@ -52,6 +60,37 @@ class Movie extends Model
             }
             MovieImage::insert($movieImage);
         }
+        return $this;
+    }
+
+    public function addTags(?array $tags) : self
+    {
+        if ($tags) {
+            $tagsNow = $this->getPivot()->pluck('tag_id')->all();
+            $tags = array_map(fn($id) => (int) $id, $tags);
+            $insertTags = array_diff($tags, $tagsNow);
+            // dd($insertTags);
+            $movieTag = [];
+            $time = Carbon::now();
+            foreach($insertTags as $tag) {
+                $movieTag[] = [
+                    'movie_id' => $this->id,
+                    'tag_id' => $tag,
+                    'created_at' => $time,
+                    'updated_at' => $time
+                ];
+            }
+            MovieTag::insert($movieTag);
+        }
+        return $this;
+    }
+
+    public function removeTags(?array $tags) : self
+    {
+        $tagsNow = $this->getPivot()->pluck('tag_id')->all();
+        $tags = array_map(fn($id) => (int) $id, $tags ?? []);
+        $deleteTags = array_diff($tagsNow, $tags);
+        MovieTag::whereIn('tag_id', $deleteTags)->delete();
         return $this;
     }
 

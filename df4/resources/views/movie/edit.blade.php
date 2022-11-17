@@ -22,6 +22,18 @@
                             <span class="input-group-text">Photo</span>
                             <input type="file" name="photo[]" multiple class="form-control">
                         </div>
+                        <div class="tags-cloud m-3">
+                            @forelse($tags as $tag)
+                            <div class="form-check">
+                                <input @if(in_array($tag->id, $checkedTags)) checked @endif class="form-check-input" name="tag[]" type="checkbox" value="{{$tag->id}}" id="_{{$tag->id}}">
+                                <label class="form-check-label" for="_{{$tag->id}}">
+                                    {{$tag->title}}
+                                </label>
+                            </div>
+                            @empty
+                                <h3>No tags</h3>
+                            @endforelse
+                        </div>
                         <div class="img-small-ch mt-3">
                             @forelse($movie->getPhotos as $photo)
                             <div class="img">

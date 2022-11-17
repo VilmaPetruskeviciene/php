@@ -77,11 +77,15 @@ class HomeController extends Controller
 
     public function addComment(Request $request, Movie $movie)
     {
+        $request->validate([
+            'post' => 'required|min:3|max:300',
+        ]);
+
         Comment::create([
             'movie_id' => $movie->id,
             'post' => $request->post,
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('ok', 'All good');
     }
 
 

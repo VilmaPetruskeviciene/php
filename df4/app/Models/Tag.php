@@ -14,4 +14,9 @@ class Tag extends Model
     {
         return $this->hasMany(MovieTag::class, 'tag_id', 'id');
     }
+
+    public function getMovies()
+    {
+        return $this->belongsToMany(Movie::class, 'movie_tags', 'tag_id', 'movie_id');
+    }
 }

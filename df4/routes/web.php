@@ -43,7 +43,6 @@ Route::prefix('tag')->name('t_')->group(function () {
     Route::delete('/delete/{tag}', [T::class, 'destroy'])->name('delete')->middleware('gate:admin');
     Route::get('/edit/{tag}', [T::class, 'edit'])->name('edit')->middleware('gate:admin');
     Route::put('/edit/{tag}', [T::class, 'update'])->name('update')->middleware('gate:admin');
-    Route::delete('/delete-movies/{tag}', [T::class, 'destroyAll'])->name('delete_movies')->middleware('gate:admin');
 });
 
 Route::prefix('comment')->name('c_')->group(function () {

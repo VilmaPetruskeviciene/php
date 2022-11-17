@@ -38,11 +38,15 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:30',
+        ]);
+
         Tag::create([
             'title' => $request->title
         ]);
 
-        return redirect()->route('t_index');
+        return redirect()->route('t_index')->with('ok', 'All good');
     }
 
     /**
@@ -80,10 +84,14 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:30',
+        ]);
+
         $tag->update(
             ['title' => $request->title]
         );
-        return redirect()->route('t_index');
+        return redirect()->route('t_index')->with('ok', 'All good');
     }
 
     /**
@@ -94,17 +102,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        if ($tag->movies()->count()) {
-            return 'Negalima';
-        }
         $tag->delete();
-        return redirect()->route('t_index');
-    }
-
-    public function destroyAll(Tag $tag)
-    {
-        $ids = $tag->movies()->pluck('id')->all();
-        Movie::destroy($ids);
         return redirect()->route('t_index');
     }
 }
