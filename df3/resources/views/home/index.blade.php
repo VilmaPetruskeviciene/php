@@ -6,7 +6,12 @@
         <div class="col-12 p-0 mb-2">
             <div class="card">
                 <div class="card-header">
-                    <h2>Movie</h2>
+                    <h2>
+                    Movie
+                    <i class="fa fa-heart m-1 text-danger"></i>
+                    <i class="fa fa-heart m-1 text-danger"></i>
+                    <i class="fa fa-heart m-1 text-danger"></i>
+                    </h2>
                     <div class="container">
                         <div class="row">
                             <div class="col-7">
